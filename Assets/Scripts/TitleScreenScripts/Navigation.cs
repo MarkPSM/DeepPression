@@ -25,5 +25,19 @@ public class Navigation : MonoBehaviour
             index = (index - 1 + botoes.Length) % botoes.Length;
             EventSystem.current.SetSelectedGameObject(botoes[index].gameObject);
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            GameObject objectSelected = EventSystem.current.currentSelectedGameObject;
+            
+            if (objectSelected != null)
+            {
+                Button btn = objectSelected.GetComponent<Button>();
+                if (btn != null)
+                {
+                    btn.onClick.Invoke();
+                }
+            }
+        }
     }
 }
