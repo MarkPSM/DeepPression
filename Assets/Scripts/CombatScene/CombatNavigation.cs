@@ -7,42 +7,20 @@ using UnityEngine.UI;
 
 public class CombatNavigation : MonoBehaviour
 {
-    public Button[] botoes;
+    public GameObject initialSetup;
+    public GameObject enfrentarSetup;
+    public GameObject hobbySetup;
+    public GameObject itensSetup;
 
-    private Dictionary<(int, KeyCode), int> navigationMap;
+    public Button[] botoes;
 
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
-
-        navigationMap = new Dictionary<(int, KeyCode), int>
-        {
-            {(0, KeyCode.RightArrow), 1 },
-            {(0, KeyCode.DownArrow), 2 },
-            {(1, KeyCode.DownArrow), 3},
-            {(1, KeyCode.LeftArrow), 0 },
-            {(2, KeyCode.UpArrow), 0 },
-            {(2, KeyCode.RightArrow), 3 },
-            {(3, KeyCode.UpArrow), 1 },
-            {(3, KeyCode.LeftArrow), 2 }
-        };
     }
 
     void Update()
-    {   
-        if (EventSystem.current.currentSelectedGameObject == null) return;
-
-        int currentIndex = System.Array.IndexOf(botoes, EventSystem.current.currentSelectedGameObject.GetComponent<Button>());
-        if (currentIndex < 0) return;
-
-        foreach (KeyCode key in new KeyCode[] {KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow})
-        {
-            if (Input.GetKeyDown(key) && navigationMap.TryGetValue((currentIndex, key), out int nextIndex))
-            {
-                EventSystem.current.SetSelectedGameObject(botoes[nextIndex].gameObject);
-                break;   
-            }
-        }
+    {
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -54,9 +32,45 @@ public class CombatNavigation : MonoBehaviour
                 if (btn != null)
                 {
                     btn.onClick.Invoke();
+
+                    switch (btn.name)
+                    {
+                        case "btnEnfrentar":
+                            SetActiveSetup(enfrentarSetup);
+                            break;
+
+                        case "btnHobby":
+                            SetActiveSetup(hobbySetup);
+                            break;
+
+                        case "btnItens":
+                            SetActiveSetup(itensSetup);
+                            break;
+                    }
                 }
             }
         }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                Debug.Log("Voltou");
+                SetActiveSetup(initialSetup);
+            }
+
+    }
+
+    private void SetActiveSetup(GameObject setup)
+    {
+        initialSetup.SetActive(false);
+        enfrentarSetup.SetActive(false);
+        hobbySetup.SetActive(false);
+        itensSetup.SetActive(false);
+
+        setup.SetActive(true);
+
+        botoes = setup.GetComponentsInChildren<Button>();
+
+        if (botoes.Length > 0)
+            EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
     }
 
 
