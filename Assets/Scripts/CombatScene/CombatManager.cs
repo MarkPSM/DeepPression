@@ -20,6 +20,7 @@ public class CombatManager : MonoBehaviour
     [Header("Textos")]
     public TextMeshProUGUI playerHealthText;
     public TextMeshProUGUI playerManaText;
+    public TextMeshProUGUI playerSpeedText;
     
 
 
@@ -59,6 +60,10 @@ public class CombatManager : MonoBehaviour
             {
                 playerSpeedBar.value += speedFillRate * Time.deltaTime;
             }
+
+            int intSpeedValue = (int)playerSpeedBar.value;
+
+            playerSpeedText.text = $"{intSpeedValue}%";
         }
         else
         {

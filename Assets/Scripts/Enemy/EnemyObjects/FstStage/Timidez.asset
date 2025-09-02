@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Timidez
   portrait: {fileID: 864898896895347326, guid: 85f1b5d2e39bc4341b010872d807f0f4, type: 3}
-  maxHP: 20
-  attack: 40
-  defense: 2
-  speed: 40
+  maxHP: 50
+  attack: 3
+  defense: 6
+  speed: 2
