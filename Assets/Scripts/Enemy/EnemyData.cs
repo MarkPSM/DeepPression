@@ -9,6 +9,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Stats")]
     public int maxHP;
+    public int currentHP;
     public int attack;
     public int defense;
     public int speed;

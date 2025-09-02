@@ -15,6 +15,7 @@ MonoBehaviour:
   enemyName: "Compara\xE7\xE3o"
   portrait: {fileID: 21300000, guid: 354f43edf563b8b4585fba6cddbf4524, type: 3}
   maxHP: 45
+  currentHP: 45
   attack: 5
   defense: 5
-  speed: 3
+  speed: 30

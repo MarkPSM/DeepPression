@@ -12,26 +12,35 @@ public class CombatManager : MonoBehaviour
     [Header("Speed")]
     [SerializeField] private float speedFillRate;
     public Slider playerSpeedBar;
-    public Slider[] enemiesSpeedBar;
+    public Slider enemySpeedBar;
+    public Slider bossSpeedBar;
+    [SerializeField] private float enemySpeed;
+    public float bossSpeed;
 
     [Header("Health")]
-    public Slider[] enemiesHealthBar;
+    public Slider enemyHealthBar;
+    public Slider bossHealthBar;
+    public float enemyHealth;
+    public float bossHealth;
 
     [Header("Textos")]
     public TextMeshProUGUI playerHealthText;
     public TextMeshProUGUI playerManaText;
     public TextMeshProUGUI playerSpeedText;
+
+    [Header("Verificações")]
+    private bool enemyBarIsRunning = true;
     
 
 
     void Start()
-    {
-        for (int i = enemySpawn.quantity; i < enemySpawn.portraits.Length; i++)
-        {
-            enemySpawn.portraits[i].sprite = null;
-            enemiesSpeedBar[i] = null;
-            enemiesHealthBar[i] = null;
-        }
+    {   
+        enemySpeedBar.maxValue = 100;
+
+        enemyHealthBar.maxValue = enemySpawn.enemy.maxHP;
+        enemyHealthBar.value = enemySpawn.enemy.currentHP;
+
+        enemyHealth = enemySpawn.enemy.maxHP;
     }
 
     void Update()
@@ -59,6 +68,8 @@ public class CombatManager : MonoBehaviour
             if (playerSpeedBar.value < 100)
             {
                 playerSpeedBar.value += speedFillRate * Time.deltaTime;
+                enemyBarIsRunning = true;
+                DisableAllNavigation();
             }
 
             int intSpeedValue = (int)playerSpeedBar.value;
@@ -70,6 +81,56 @@ public class CombatManager : MonoBehaviour
             Debug.Log("playerSpeedBar está nulo!");
         }
 
-        
+        if (enemySpeedBar != null)
+        {
+            enemySpeed = enemySpawn.enemy.speed;
+
+                if (enemySpeedBar.value < 100 && enemyBarIsRunning == true)
+                    enemySpeedBar.value += enemySpeed * Time.deltaTime;
+        } 
+        else
+        {
+            Debug.Log("enemySpeedBar está nulo");
+        }
+
+        if (enemyHealthBar != null && enemySpawn.enemy)
+        {
+            enemyHealthBar.value = enemySpawn.enemy.currentHP;
+        }
+
+        if(playerSpeedBar.value == 100)
+        {
+            enemyBarIsRunning = false;
+            ActivateNavigation();
+        }
+
+    }
+
+    public void SetupEnemyUI(EnemyData enemy)
+    {
+        enemyHealthBar.maxValue = enemy.maxHP;
+        enemyHealthBar.value = enemy.currentHP;
+        enemySpeed = enemy.speed;
+        enemyHealth = enemy.currentHP;
+    }
+
+    void DisableAllNavigation()
+    {
+        foreach (var selectable in FindObjectsByType<Selectable>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            UnityEngine.UI.Navigation nav = selectable.navigation;
+            nav.mode = UnityEngine.UI.Navigation.Mode.None;
+            selectable.navigation = nav;
+        }
+    }
+
+    void ActivateNavigation()
+    {
+        foreach (var selectable in FindObjectsByType<Selectable>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            UnityEngine.UI.Navigation nav = selectable.navigation;
+            nav.mode = UnityEngine.UI.Navigation.Mode.Explicit;
+            selectable.navigation = nav;
+        }
     }
 }

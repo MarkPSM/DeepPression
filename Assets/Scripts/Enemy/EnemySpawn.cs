@@ -6,6 +6,11 @@ public class EnemySpawn : MonoBehaviour
 {
     public bool isBoss;
 
+    public EnemyData enemy;
+
+    [Header("Referências")]
+    public CombatManager combatManager;
+
     [Header("Inimigos por Região")]
     public EnemyData[] fstStageEnemies;
     public EnemyData fstStageBoss;
@@ -17,11 +22,8 @@ public class EnemySpawn : MonoBehaviour
     public EnemyData trdStageBoss;
 
     [Header("UI Portraits")]
-    public Image[] portraits;
-
-    [Header("Inimigos Spawnados")]
-    public List<EnemyData> spawnedEnemies = new List<EnemyData>();
-    public int quantity;
+    public Image portrait;
+    public Image bossPortrait;
 
     public enum Stage
     {
@@ -32,7 +34,7 @@ public class EnemySpawn : MonoBehaviour
 
     public Stage actualStage;
 
-    void Start()
+    void Awake()
     { 
         if (isBoss == false)
             NormalSpawn(actualStage);
@@ -66,52 +68,33 @@ public class EnemySpawn : MonoBehaviour
             return;
         }
 
-        spawnedEnemies.Clear();
+        enemy = pool[Random.Range(0, pool.Length)];
+        portrait.sprite = enemy.portrait;
 
-        quantity = Random.Range(1, 4);
+        combatManager.SetupEnemyUI(enemy);
 
-        for (int i = 0; i < quantity; i++)
-        {
-            EnemyData enemy = pool[Random.Range(0, pool.Length)];
-            spawnedEnemies.Add(enemy);
-
-            if (i < portraits.Length)
-                portraits[i].sprite = enemy.portrait;
-        }
-
-        for (int i = quantity; i < portraits.Length; i++)
-        {
-            portraits[i].sprite = null;
-        }
-
-        Debug.Log($"Spawnados {quantity} inimigos");
+        Debug.Log($"{enemy.name} spawnado!");
     }
 
     public void BossSpawn(Stage stage)
     {
-        spawnedEnemies.Clear();
-
         var actualBoss = fstStageBoss;
 
         switch (stage)
         {
             case Stage.FirstStage:
-                spawnedEnemies.Add(fstStageBoss);
                 actualBoss = fstStageBoss;
                 break;
             case Stage.SecondStage:
-                spawnedEnemies.Add(sndStageBoss);
                 actualBoss = sndStageBoss;
                 break;
             case Stage.ThirdStage:
-                spawnedEnemies.Add(trdStageBoss);
                 actualBoss = trdStageBoss;
                 break;
         }
 
-        portraits[1].sprite = null;
-        portraits[2].sprite = null;
+        combatManager.SetupEnemyUI(enemy);
 
-        Debug.Log($"Boss {actualBoss} spawnado");
+        Debug.Log($"Boss {actualBoss} spawnado!");
     }
 }

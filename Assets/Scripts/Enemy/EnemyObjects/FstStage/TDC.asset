@@ -15,6 +15,7 @@ MonoBehaviour:
   enemyName: TDC
   portrait: {fileID: 21300000, guid: 4418e913f2f49a149be35919f004a7e3, type: 3}
   maxHP: 40
+  currentHP: 40
   attack: 6
   defense: 4
-  speed: 5
+  speed: 20
