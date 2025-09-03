@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 168034801}
   - component: {fileID: 168034800}
   m_Layer: 5
-  m_Name: btnCalice
+  m_Name: btnPocao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 292020836}
   - component: {fileID: 292020835}
   m_Layer: 5
-  m_Name: btnF&A
+  m_Name: btnJoia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2360,7 +2360,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3304,7 +3304,7 @@ GameObject:
   - component: {fileID: 598973658}
   - component: {fileID: 598973657}
   m_Layer: 5
-  m_Name: btnPsique
+  m_Name: btnPilula
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5245,6 +5245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0dd41905aadcae4b84523b4f07ec1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatManager: {fileID: 1090958575}
   initialSetup: {fileID: 97514574}
   enfrentarSetup: {fileID: 493031891}
   hobbySetup: {fileID: 1358018147}
@@ -7741,7 +7742,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
@@ -8239,7 +8240,7 @@ GameObject:
   - component: {fileID: 1978878574}
   - component: {fileID: 1978878573}
   m_Layer: 5
-  m_Name: btnCVV
+  m_Name: btnRealismo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

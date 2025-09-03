@@ -1,14 +1,14 @@
-using Mono.Cecil.Cil;
-using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CombatNavigation : MonoBehaviour
 {
+    [Header("References")]
+    public CombatManager combatManager;
+
+    [Header("Setup")]
     public GameObject initialSetup;
     public GameObject enfrentarSetup;
     public GameObject hobbySetup;
@@ -16,15 +16,6 @@ public class CombatNavigation : MonoBehaviour
 
     public Button[] botoes;
 
-    [Serializable]
-    public class Botao
-    {
-        public GameObject button;
-        public GameObject Setup;
-        public string Function;
-    }
-
-    public List<Botao> buttons;
 
     void Start()
     {
@@ -38,103 +29,121 @@ public class CombatNavigation : MonoBehaviour
         {
             GameObject objectSelected = EventSystem.current.currentSelectedGameObject;
 
-            if (objectSelected != null)
+            if (combatManager != null)
             {
-                Button btn = objectSelected.GetComponent<Button>();
-                if (btn != null)
+                if (combatManager.playerSpeedBar.value == 100)
                 {
-                    btn.onClick.Invoke();
 
-                    if (!string.IsNullOrEmpty(buttons[0].Function))
-
-                    switch (btn.name)
+                    if (objectSelected != null)
                     {
-                        case "btnEnfrentar":
-                            SetActiveSetup(enfrentarSetup);
-                            break;
+                        Button btn = objectSelected.GetComponent<Button>();
+                        if (btn != null)
+                        {
+                            btn.onClick.Invoke();
 
-                        case "btnHobby":
-                            SetActiveSetup(hobbySetup);
-                            break;
+                            switch (btn.name)
+                            {
+                                case "btnEnfrentar":
+                                    SetActiveSetup(enfrentarSetup);
+                                    break;
 
-                        case "btnItens":
-                            SetActiveSetup(itensSetup);
-                            break;
+                                case "btnHobby":
+                                    SetActiveSetup(hobbySetup);
+                                    break;
 
-                        case "btnFugir":
-                            //Fuga();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnItens":
+                                    SetActiveSetup(itensSetup);
+                                    break;
 
-                        case "btnCoragem":
-                            //Coragem();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnFugir":
+                                    combatManager.Fuga();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnF&A":
-                            //F&A();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnCoragem":
+                                    combatManager.Coragem();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnCVV":
-                            //CVV();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnF&A":
+                                    combatManager.FA();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnPsique":
-                            //Psique();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnCVV":
+                                    combatManager.CVV();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnMúsica":
-                            //Musica();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnPsique":
+                                    combatManager.Psique();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnExercícios":
-                            //Exercicio();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnMúsica":
+                                    combatManager.Musica();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnLeitura":
-                            //Leitura();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnExercícios":
+                                    combatManager.Exercicio();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnConversa":
-                            //Conversa();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnLeitura":
+                                    combatManager.Leitura();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnPocao":
-                            //Pocao();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnConversa":
+                                    combatManager.Conversa();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnJoia":
-                            //Joia();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnPocao":
+                                    combatManager.Pocao();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnRealismo":
-                            //Realismo();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnJoia":
+                                    combatManager.Joia();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
 
-                        case "btnPilula":
-                            //Pilula();
-                            SetActiveSetup(initialSetup);
-                            break;
+                                case "btnRealismo":
+                                    combatManager.Realismo();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
+
+                                case "btnPilula":
+                                    combatManager.Pilula();
+                                    SetActiveSetup(initialSetup);
+                                    combatManager.playerSpeedBar.value = 0;
+                                    break;
+                            }
+                        }
                     }
+                    
                 }
             }
         }
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Debug.Log("Voltou");
-                SetActiveSetup(initialSetup);
-            }
-
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("Voltou");
+            SetActiveSetup(initialSetup);
+        }
     }
 
     private void SetActiveSetup(GameObject setup)
@@ -151,6 +160,5 @@ public class CombatNavigation : MonoBehaviour
         if (botoes.Length > 0)
             EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
     }
-
 
 }

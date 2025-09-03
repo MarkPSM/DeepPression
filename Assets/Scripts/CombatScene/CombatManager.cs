@@ -75,6 +75,12 @@ public class CombatManager : MonoBehaviour
             int intSpeedValue = (int)playerSpeedBar.value;
 
             playerSpeedText.text = $"{intSpeedValue}%";
+
+            if (playerSpeedBar.value == 100)
+            {
+                enemyBarIsRunning = false;
+                ActivateNavigation();
+            }
         }
         else
         {
@@ -87,6 +93,12 @@ public class CombatManager : MonoBehaviour
 
                 if (enemySpeedBar.value < 100 && enemyBarIsRunning == true)
                     enemySpeedBar.value += enemySpeed * Time.deltaTime;
+
+                if (enemySpeedBar.value == 100)
+                {
+                    characterManager.actualHP -= (enemySpawn.enemy.attack / characterManager.Defense);
+                    enemySpeedBar.value = 0;
+                }
         } 
         else
         {
@@ -95,13 +107,7 @@ public class CombatManager : MonoBehaviour
 
         if (enemyHealthBar != null && enemySpawn.enemy)
         {
-            enemyHealthBar.value = enemySpawn.enemy.currentHP;
-        }
-
-        if(playerSpeedBar.value == 100)
-        {
-            enemyBarIsRunning = false;
-            ActivateNavigation();
+            enemyHealthBar.value = enemyHealth;
         }
 
     }
@@ -133,4 +139,109 @@ public class CombatManager : MonoBehaviour
             selectable.navigation = nav;
         }
     }
+
+    public void Fuga()
+    {
+        System.Random rnd = new System.Random();
+
+        int chance = rnd.Next(1, 3);
+
+        if (chance == 1)
+        {
+            Debug.Log("Não escapou");
+        }
+        else if (chance == 2)
+        {
+            Debug.Log("Escapou");
+        }
+    }
+
+    public void Coragem()
+    {
+        enemyHealth -= (characterManager.Attack / enemySpawn.enemy.defense);
+    }
+
+    public void FA()
+    {
+        characterManager.Attack += characterManager.Defense;
+    }
+
+    public void CVV()
+    {
+        characterManager.mentalAttack *= 2;
+    }
+
+    public void Psique()
+    {
+        enemyHealth -= (characterManager.mentalAttack / enemySpawn.enemy.defense);
+    }
+
+    public void Musica()
+    {
+        if (characterManager.actualMP - 20 < 0)
+        {
+            return;
+        }
+
+        enemySpawn.enemy.defense -= characterManager.mentalAttack;
+        characterManager.actualMP -= 20;
+    }
+
+    public void Exercicio()
+    {
+        if (characterManager.actualMP - 10 < 0)
+        {
+            return;
+        }
+
+        characterManager.Attack *= 2;
+        characterManager.actualMP -= 10;
+    }
+
+    public void Leitura()
+    {
+        characterManager.actualMP += characterManager.mentalAttack;
+    }
+
+    public void Conversa()
+    {
+        if (characterManager.actualMP - 30 < 0)
+        {
+            return;
+        }
+
+        characterManager.Defense += characterManager.mentalAttack;
+        characterManager.actualMP -= 30;
+    }
+
+    public void Pocao()
+    {
+        characterManager.actualHP += 20;
+        if (characterManager.actualHP > characterManager.maxHP)
+            characterManager.actualHP = characterManager.maxHP;
+    }
+
+    public void Joia()
+    {
+        characterManager.actualMP += 10;
+        if (characterManager.actualMP > characterManager.maxMP)
+            characterManager.actualMP = characterManager.maxMP;
+    }
+
+    public void Realismo()
+    {
+        characterManager.Speed += 10;
+    }
+
+    public void Pilula()
+    {
+        if (characterManager.actualHP - (characterManager.maxHP / 2) <= 0)
+        {
+            return;
+        }
+
+        characterManager.actualHP -= (characterManager.maxHP / 2);
+        characterManager.Speed *= 3;
+    }
+
 }

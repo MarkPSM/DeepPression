@@ -18,4 +18,4 @@ MonoBehaviour:
   currentHP: 40
   attack: 6
   defense: 4
-  speed: 20
+  speed: 25
