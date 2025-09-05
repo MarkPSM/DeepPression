@@ -7185,7 +7185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6122ae362f5a5d4b8b7f277e7c951ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   maxHP: 0
   actualHP: 0
   maxMP: 0
