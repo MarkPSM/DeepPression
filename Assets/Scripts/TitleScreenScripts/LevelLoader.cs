@@ -44,7 +44,7 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene("CombatScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("CombatScene");
 
     }
 }

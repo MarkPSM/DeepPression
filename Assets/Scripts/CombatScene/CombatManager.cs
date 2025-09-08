@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CombatManager : MonoBehaviour
 {
     [Header("References")]
-    public CharacterManager characterManager;
     public EnemySpawn enemySpawn;
     public LevelLoader levelLoader;
     public EnemyController enemyController;
@@ -47,25 +46,20 @@ public class CombatManager : MonoBehaviour
 
     void Update()
     {
-        if (characterManager == null)
-        {
-            Debug.Log("CharacterManager não atribuído!");
-            return;
-        }
 
-        int playerActualHealth = characterManager.actualHP;
-        int playerMaxHealth = characterManager.maxHP;
+        int playerActualHealth = CharacterManager.Player.actualHP;
+        int playerMaxHealth = CharacterManager.Player.maxHP;
 
         playerHealthText.text = $"{playerActualHealth}/{playerMaxHealth}";
 
-        int playerActualMana = characterManager.actualMP;
-        int playerMaxMana = characterManager.maxMP;
+        int playerActualMana = CharacterManager.Player.actualMP;
+        int playerMaxMana = CharacterManager.Player.maxMP;
 
         playerManaText.text = $"{playerActualMana} / {playerMaxMana}";
 
         if (playerSpeedBar != null) {
 
-            speedFillRate = characterManager.Speed;
+            speedFillRate = CharacterManager.Player.Speed;
 
             if (playerSpeedBar.value < 100)
             {
@@ -98,7 +92,7 @@ public class CombatManager : MonoBehaviour
 
                 if (enemySpeedBar.value == 100)
                 {
-                    characterManager.actualHP -= (enemySpawn.enemy.attack / characterManager.Defense);
+                    CharacterManager.Player.actualHP -= (enemySpawn.enemy.attack / CharacterManager.Player.Defense);
                     enemySpeedBar.value = 0;
                 }
         } 
@@ -107,14 +101,18 @@ public class CombatManager : MonoBehaviour
             Debug.Log("enemySpeedBar está nulo");
         }
 
-        if (enemyHealthBar != null && enemySpawn.enemy)
+        if (enemyHealthBar != null)
         {
             enemyHealthBar.value = enemyHealth;
             if (enemyHealthBar.value <= 0)
             {
                 Debug.Log("Inimigo Derrotado");
                 StartCoroutine(levelLoader.LoadPhase("FirstStage"));
-                enemyController.isDead = true;
+                EnemyManager.Enemy.isDead = true;
+            }
+            else
+            {
+                EnemyManager.Enemy.isDead = false;
             }
         }
     }
@@ -166,90 +164,90 @@ public class CombatManager : MonoBehaviour
 
     public void Coragem()
     {
-        enemyHealth -= (characterManager.Attack / enemySpawn.enemy.defense);
+        enemyHealth -= (CharacterManager.Player.Attack / enemySpawn.enemy.defense);
     }
 
     public void FA()
     {
-        characterManager.Attack += characterManager.Defense;
+        CharacterManager.Player.Attack += CharacterManager.Player.Defense;
     }
 
     public void CVV()
     {
-        characterManager.mentalAttack *= 2;
+        CharacterManager.Player.mentalAttack *= 2;
     }
 
     public void Psique()
     {
-        enemyHealth -= (characterManager.mentalAttack / enemySpawn.enemy.defense);
+        enemyHealth -= (CharacterManager.Player.mentalAttack / enemySpawn.enemy.defense);
     }
 
     public void Musica()
     {
-        if (characterManager.actualMP - 20 < 0)
+        if (CharacterManager.Player.actualMP - 20 < 0)
         {
             return;
         }
 
-        enemySpawn.enemy.defense -= characterManager.mentalAttack;
-        characterManager.actualMP -= 20;
+        enemySpawn.enemy.defense -= CharacterManager.Player.mentalAttack;
+        CharacterManager.Player.actualMP -= 20;
     }
 
     public void Exercicio()
     {
-        if (characterManager.actualMP - 10 < 0)
+        if (CharacterManager.Player.actualMP - 10 < 0)
         {
             return;
         }
 
-        characterManager.Attack *= 2;
-        characterManager.actualMP -= 10;
+        CharacterManager.Player.Attack *= 2;
+        CharacterManager.Player.actualMP -= 10;
     }
 
     public void Leitura()
     {
-        characterManager.actualMP += characterManager.mentalAttack;
+        CharacterManager.Player.actualMP += CharacterManager.Player.mentalAttack;
     }
 
     public void Conversa()
     {
-        if (characterManager.actualMP - 30 < 0)
+        if (CharacterManager.Player.actualMP - 30 < 0)
         {
             return;
         }
 
-        characterManager.Defense += characterManager.mentalAttack;
-        characterManager.actualMP -= 30;
+        CharacterManager.Player.Defense += CharacterManager.Player.mentalAttack;
+        CharacterManager.Player.actualMP -= 30;
     }
 
     public void Pocao()
     {
-        characterManager.actualHP += 20;
-        if (characterManager.actualHP > characterManager.maxHP)
-            characterManager.actualHP = characterManager.maxHP;
+        CharacterManager.Player.actualHP += 20;
+        if (CharacterManager.Player.actualHP > CharacterManager.Player.maxHP)
+            CharacterManager.Player.actualHP = CharacterManager.Player.maxHP;
     }
 
     public void Joia()
     {
-        characterManager.actualMP += 10;
-        if (characterManager.actualMP > characterManager.maxMP)
-            characterManager.actualMP = characterManager.maxMP;
+        CharacterManager.Player.actualMP += 10;
+        if (CharacterManager.Player.actualMP > CharacterManager.Player.maxMP)
+            CharacterManager.Player.actualMP = CharacterManager.Player.maxMP;
     }
 
     public void Realismo()
     {
-        characterManager.Speed += 10;
+        CharacterManager.Player.Speed += 10;
     }
 
     public void Pilula()
     {
-        if (characterManager.actualHP - (characterManager.maxHP / 2) <= 0)
+        if (CharacterManager.Player.actualHP - (CharacterManager.Player.maxHP / 2) <= 0)
         {
             return;
         }
 
-        characterManager.actualHP -= (characterManager.maxHP / 2);
-        characterManager.Speed *= 3;
+        CharacterManager.Player.actualHP -= (CharacterManager.Player.maxHP / 2);
+        CharacterManager.Player.Speed *= 3;
     }
 
 }

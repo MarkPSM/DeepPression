@@ -1,7 +1,10 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    public static CharacterManager Player;
+
     public int maxHP;
     public int actualHP;
 
@@ -14,9 +17,19 @@ public class CharacterManager : MonoBehaviour
     public int Defense;
     public int Speed;
 
-
+        
     private void Awake()
-    {
+    { 
+        if (Player == null)
+        {
+            Player = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         maxHP = 100;
         actualHP = 100;
 

@@ -1,10 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public int ID;
+
     [Header("Reference")]
     public LevelLoader levelLoader;
-    public EnemySpawn enemySpawn;
     public CharacterController characterController;
 
     [Header("Animator")]
@@ -19,20 +21,23 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private Transform target;
     public bool canCollide;
+    public bool isBoss;
 
     [Header("Stage")]
     public EnemySpawn.Stage thisStage;
 
-    void Start()
+    private void Awake()
     {
+        canCollide = true;
+        target = player.transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        target = player.transform;
-        canCollide = true;
     }
 
     void Update()
     {
+        isDead = EnemyManager.Enemy.isDead;
+
         if (!isDead)
         {
             if (target.position.x < transform.position.x && isFacingRight)
@@ -68,7 +73,7 @@ public class EnemyController : MonoBehaviour
         }
         if (isDead)
         {
-            animator.SetBool("isDead", true);
+            StartCoroutine(Death());
         }
     }
 
@@ -86,18 +91,24 @@ public class EnemyController : MonoBehaviour
         {
             if (collision != null && collision.gameObject == player)
             {
-                if (enemySpawn != null)
-                {
-                    enemySpawn.actualStage = thisStage;
-                    Debug.Log(enemySpawn.actualStage);
-                    StartCoroutine(levelLoader.LoadCombatScene());
-                    characterController.canWalk = false;
-                    canCollide = false;
-                }
-                else {
-                    Debug.Log("enemySpawn vazio");
-                }
+                GameManager.Instance.PrepareCombat(thisStage);
+                StartCoroutine(levelLoader.LoadPhase("CombatScene"));
+
+                EnemyManager.Enemy.actualID = ID;
             }
         }
+        else
+        {
+            Debug.Log("Collision = null");
+        }
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(2f);
+
+        Destroy(this.gameObject);
     }
 }

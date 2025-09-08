@@ -35,7 +35,10 @@ public class EnemySpawn : MonoBehaviour
     public Stage actualStage;
 
     void Awake()
-    { 
+    {
+        actualStage = GameManager.Instance.nextStage;
+        isBoss = GameManager.Instance.nextIsBoss;
+
         if (isBoss == false)
             NormalSpawn(actualStage);
 
