@@ -37,4 +37,14 @@ public class LevelLoader : MonoBehaviour
 
         SceneManager.LoadScene(phaseName);
     }
+
+    public IEnumerator LoadCombatScene()
+    {
+        //transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("CombatScene", LoadSceneMode.Additive);
+
+    }
 }
