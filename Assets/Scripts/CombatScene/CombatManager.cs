@@ -8,6 +8,8 @@ public class CombatManager : MonoBehaviour
     [Header("References")]
     public CharacterManager characterManager;
     public EnemySpawn enemySpawn;
+    public LevelLoader levelLoader;
+    public EnemyController enemyController;
 
     [Header("Speed")]
     [SerializeField] private float speedFillRate;
@@ -108,8 +110,13 @@ public class CombatManager : MonoBehaviour
         if (enemyHealthBar != null && enemySpawn.enemy)
         {
             enemyHealthBar.value = enemyHealth;
+            if (enemyHealthBar.value <= 0)
+            {
+                Debug.Log("Inimigo Derrotado");
+                StartCoroutine(levelLoader.LoadPhase("FirstStage"));
+                enemyController.isDead = true;
+            }
         }
-
     }
 
     public void SetupEnemyUI(EnemyData enemy)
@@ -153,6 +160,7 @@ public class CombatManager : MonoBehaviour
         else if (chance == 2)
         {
             Debug.Log("Escapou");
+            StartCoroutine(levelLoader.LoadPhase(enemyController.thisStage.ToString()));
         }
     }
 

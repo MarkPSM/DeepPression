@@ -10,12 +10,13 @@ public class CharacterController : MonoBehaviour
     private Rigidbody2D rb;
     private float moveSpeed = 1f;
     public float currentSpeed;
+    public bool canWalk;
 
     public Vector2 playerDirection;
 
     private bool isWalking = false;
     private Animator animator;
-    private bool facingRight = true;
+    public bool facingRight = true;
     private bool facingUp = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +27,8 @@ public class CharacterController : MonoBehaviour
         currentSpeed = moveSpeed;
 
         animator = GetComponent<Animator>();
+
+        canWalk = true;
     }
 
     // Update is called once per frame
@@ -52,25 +55,29 @@ public class CharacterController : MonoBehaviour
 
     void PlayerMove()
     {
-        playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (canWalk)
+        {
+            playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (playerDirection.x < 0 && facingRight)
-        {
-            Flip();
-        }
-        else if (playerDirection.x > 0 && !facingRight)
-        {
-            Flip();
+            if (playerDirection.x < 0 && facingRight)
+            {
+                Flip();
+            }
+            else if (playerDirection.x > 0 && !facingRight)
+            {
+                Flip();
+            }
+
+            if (playerDirection.y < 0 && facingUp)
+            {
+                facingUp = !facingUp;
+            }
+            else if (playerDirection.y > 0 && !facingUp)
+            {
+                facingUp = !facingUp;
+            }
         }
 
-        if (playerDirection.y < 0 && facingUp)
-        {
-            facingUp = !facingUp;
-        }
-        else if (playerDirection.y > 0 && !facingUp)
-        {
-            facingUp = !facingUp;
-        }
     }
 
     void Flip()
