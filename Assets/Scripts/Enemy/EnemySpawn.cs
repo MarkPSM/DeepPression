@@ -8,6 +8,8 @@ public class EnemySpawn : MonoBehaviour
 
     public EnemyData enemy;
 
+    public EnemyData boss;
+
     [Header("Referências")]
     public CombatManager combatManager;
 
@@ -36,8 +38,9 @@ public class EnemySpawn : MonoBehaviour
 
     void Awake()
     {
+        isBoss = EnemyManager.Enemy.isBoss;
+        Debug.Log(isBoss);
         actualStage = GameManager.Instance.nextStage;
-        isBoss = GameManager.Instance.nextIsBoss;
 
         if (isBoss == false)
             NormalSpawn(actualStage);
@@ -74,6 +77,8 @@ public class EnemySpawn : MonoBehaviour
         enemy = pool[Random.Range(0, pool.Length)];
         portrait.sprite = enemy.portrait;
 
+        bossPortrait.enabled = false;
+
         combatManager.SetupEnemyUI(enemy);
 
         Debug.Log($"{enemy.name} spawnado!");
@@ -81,23 +86,25 @@ public class EnemySpawn : MonoBehaviour
 
     public void BossSpawn(Stage stage)
     {
-        var actualBoss = fstStageBoss;
-
         switch (stage)
         {
             case Stage.FirstStage:
-                actualBoss = fstStageBoss;
+                boss = fstStageBoss;
                 break;
             case Stage.SecondStage:
-                actualBoss = sndStageBoss;
+                boss = sndStageBoss;
                 break;
             case Stage.ThirdStage:
-                actualBoss = trdStageBoss;
+                boss = trdStageBoss;
                 break;
         }
 
-        combatManager.SetupEnemyUI(enemy);
+        combatManager.SetupBossUI(boss);
 
-        Debug.Log($"Boss {actualBoss} spawnado!");
+        bossPortrait.sprite = boss.portrait;
+
+        portrait.enabled = false;
+
+        Debug.Log($"Boss {boss.name} spawnado!");
     }
 }

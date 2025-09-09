@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour
 
     public bool isDead;
 
+    public bool isBoss;
+
     public int actualID;
 
     void Awake()
@@ -27,17 +29,22 @@ public class EnemyManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        enemies = Enemy.GetComponentsInChildren<GameObject>();
+        Transform[] children = GetComponentsInChildren<Transform>(true);
+        List<GameObject> objs = new List<GameObject>();
+
+        foreach (Transform child in children)
+        {
+            if (child != this.transform)
+                objs.Add(child.gameObject);
+        }
+
+        enemies = objs.ToArray();
 
         foreach (GameObject enemy in enemies)
         {
-            if (enemy == null)
+            if (enemy != null)
             {
                 DontDestroyOnLoad(enemy);
-            }
-            else
-            {
-                Destroy(enemy);
             }
         }
 

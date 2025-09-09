@@ -94,6 +94,7 @@ public class EnemyController : MonoBehaviour
                 GameManager.Instance.PrepareCombat(thisStage);
                 StartCoroutine(levelLoader.LoadPhase("CombatScene"));
 
+                EnemyManager.Enemy.isBoss = isBoss;
                 EnemyManager.Enemy.actualID = ID;
             }
         }

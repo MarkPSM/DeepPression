@@ -30,18 +30,30 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI playerSpeedText;
 
     [Header("Verificações")]
-    private bool enemyBarIsRunning = true;
+    public bool enemyBarIsRunning = true;
     
 
 
     void Start()
     {   
-        enemySpeedBar.maxValue = 100;
+        if (enemySpawn.isBoss == false)
+        {
+            enemySpeedBar.maxValue = 100;
 
-        enemyHealthBar.maxValue = enemySpawn.enemy.maxHP;
-        enemyHealthBar.value = enemySpawn.enemy.currentHP;
+            enemyHealthBar.maxValue = enemySpawn.enemy.maxHP;
+            enemyHealthBar.value = enemySpawn.enemy.currentHP;
 
-        enemyHealth = enemySpawn.enemy.maxHP;
+            enemyHealth = enemySpawn.enemy.maxHP;
+        }
+        else
+        {
+            bossSpeedBar.maxValue = 100;
+
+            bossHealthBar.maxValue = enemySpawn.boss.maxHP;
+            enemyHealthBar.value = enemySpawn.boss.currentHP;
+
+            bossHealth = enemySpawn.boss.maxHP;
+        }
     }
 
     void Update()
@@ -83,36 +95,84 @@ public class CombatManager : MonoBehaviour
             Debug.Log("playerSpeedBar está nulo!");
         }
 
-        if (enemySpeedBar != null)
-        {
-            enemySpeed = enemySpawn.enemy.speed;
-
-                if (enemySpeedBar.value < 100 && enemyBarIsRunning == true)
-                    enemySpeedBar.value += enemySpeed * Time.deltaTime;
-
-                if (enemySpeedBar.value == 100)
-                {
-                    CharacterManager.Player.actualHP -= (enemySpawn.enemy.attack / CharacterManager.Player.Defense);
-                    enemySpeedBar.value = 0;
-                }
-        } 
-        else
-        {
-            Debug.Log("enemySpeedBar está nulo");
-        }
-
-        if (enemyHealthBar != null)
-        {
-            enemyHealthBar.value = enemyHealth;
-            if (enemyHealthBar.value <= 0)
+        if (enemySpawn.isBoss == false) 
+        { 
+            if (enemySpeedBar != null)
             {
-                Debug.Log("Inimigo Derrotado");
-                StartCoroutine(levelLoader.LoadPhase("FirstStage"));
-                EnemyManager.Enemy.isDead = true;
+                enemySpeed = enemySpawn.enemy.speed;
+
+                    if (enemySpeedBar.value < 100 && enemyBarIsRunning == true)
+                        enemySpeedBar.value += enemySpeed * Time.deltaTime;
+
+                    if (enemySpeedBar.value == 100)
+                    {
+                        CharacterManager.Player.actualHP -= (enemySpawn.enemy.attack / CharacterManager.Player.Defense);
+                        enemySpeedBar.value = 0;
+                    }
+            } 
+            else
+            {
+                enemySpeedBar.enabled = false;
+            }
+
+            if (enemyHealthBar != null)
+            {
+                enemyHealthBar.value = enemyHealth;
+                if (enemyHealthBar.value <= 0)
+                {
+                    Debug.Log("Inimigo Derrotado");
+                    StartCoroutine(levelLoader.LoadPhase(GameManager.Instance.nextStage.ToString()));
+                    EnemyManager.Enemy.isDead = true;
+                }
+                else
+                {
+                    EnemyManager.Enemy.isDead = false;
+                }
             }
             else
             {
-                EnemyManager.Enemy.isDead = false;
+                enemyHealthBar.enabled = false;
+            }
+        }
+
+        if (enemySpawn.isBoss == true)
+        {
+            if (bossHealthBar != null)
+            {
+                bossHealthBar.value = bossHealth;
+
+                if (bossHealthBar.value <= 0)
+                {
+                    Debug.Log("Boss Derrotado");
+                    StartCoroutine(levelLoader.LoadPhase(GameManager.Instance.nextStage.ToString()));
+                    EnemyManager.Enemy.isDead = true;
+                }
+                else
+                {
+                    EnemyManager.Enemy.isDead = false;
+                }
+            }
+            else
+            {
+                bossHealthBar.enabled = false;
+            }
+
+            if (bossSpeedBar != null)
+            {
+                bossSpeed = enemySpawn.boss.speed;
+
+                if (bossSpeedBar.value < 100 && enemyBarIsRunning == true)
+                    bossSpeedBar.value += bossSpeed * Time.deltaTime;
+
+                if (bossSpeedBar.value == 100)
+                {
+                    CharacterManager.Player.actualHP -= (enemySpawn.boss.attack / CharacterManager.Player.Defense);
+                    bossSpeedBar.value = 0;
+                }
+            }
+            else
+            {
+               bossSpeedBar.enabled = false;
             }
         }
     }
@@ -123,6 +183,14 @@ public class CombatManager : MonoBehaviour
         enemyHealthBar.value = enemy.currentHP;
         enemySpeed = enemy.speed;
         enemyHealth = enemy.currentHP;
+    }
+
+    public void SetupBossUI(EnemyData boss)
+    {
+        bossHealthBar.maxValue = boss.maxHP;
+        bossHealthBar.value = boss.currentHP;
+        bossSpeed = boss.speed;
+        bossHealth = boss.currentHP;
     }
 
     void DisableAllNavigation()
@@ -147,24 +215,35 @@ public class CombatManager : MonoBehaviour
 
     public void Fuga()
     {
-        System.Random rnd = new System.Random();
-
-        int chance = rnd.Next(1, 3);
-
-        if (chance == 1)
+        if (GameManager.Instance.nextIsBoss == false)
         {
-            Debug.Log("Não escapou");
+            System.Random rnd = new System.Random();
+
+            int chance = rnd.Next(1, 3);
+
+            if (chance == 1)
+            {
+                Debug.Log("Não escapou");
+            }
+            else if (chance == 2)
+            {
+                Debug.Log("Escapou");
+                StartCoroutine(levelLoader.LoadPhase(enemyController.thisStage.ToString()));
+            }
         }
-        else if (chance == 2)
+        else
         {
-            Debug.Log("Escapou");
-            StartCoroutine(levelLoader.LoadPhase(enemyController.thisStage.ToString()));
+            Debug.Log("Luta contra Boss!");
+            return;
         }
     }
 
     public void Coragem()
     {
-        enemyHealth -= (CharacterManager.Player.Attack / enemySpawn.enemy.defense);
+        if (enemySpawn.isBoss == false)
+            enemyHealth -= (CharacterManager.Player.Attack / enemySpawn.enemy.defense);
+        else
+            bossHealth -= (CharacterManager.Player.Attack / enemySpawn.boss.defense);
     }
 
     public void FA()
@@ -179,7 +258,10 @@ public class CombatManager : MonoBehaviour
 
     public void Psique()
     {
-        enemyHealth -= (CharacterManager.Player.mentalAttack / enemySpawn.enemy.defense);
+        if (enemySpawn.isBoss == false)
+            enemyHealth -= (CharacterManager.Player.mentalAttack / enemySpawn.enemy.defense);
+        else
+            bossHealth -= (CharacterManager.Player.mentalAttack / enemySpawn.boss.defense);
     }
 
     public void Musica()
@@ -189,7 +271,11 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
-        enemySpawn.enemy.defense -= CharacterManager.Player.mentalAttack;
+        if (enemySpawn.isBoss == false)
+            enemySpawn.enemy.defense -= CharacterManager.Player.mentalAttack;
+        else
+            enemySpawn.boss.defense -= CharacterManager.Player.mentalAttack;
+
         CharacterManager.Player.actualMP -= 20;
     }
 

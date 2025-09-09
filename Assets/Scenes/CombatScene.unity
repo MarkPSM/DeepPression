@@ -1073,7 +1073,7 @@ RectTransform:
   m_Father: {fileID: 62653911}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.01, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1798,8 +1798,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1988892015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.01, y: 0}
-  m_AnchorMax: {x: 0.01, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -3.0000153, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4261,7 +4261,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4946,8 +4946,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 526712142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.01, y: 0}
-  m_AnchorMax: {x: 0.01, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -3.0000153, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5349,9 +5349,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4431902aaaab64aabfbc7cc5de2a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManager: {fileID: 1702516724}
   enemySpawn: {fileID: 1090958576}
   levelLoader: {fileID: 1507738285}
+  enemyController: {fileID: 0}
   speedFillRate: 0
   playerSpeedBar: {fileID: 636045251}
   enemySpeedBar: {fileID: 413248511}
@@ -5365,6 +5365,7 @@ MonoBehaviour:
   playerHealthText: {fileID: 306978713}
   playerManaText: {fileID: 1527276503}
   playerSpeedText: {fileID: 1231245484}
+  enemyBarIsRunning: 1
 --- !u!114 &1090958576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5379,6 +5380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBoss: 0
   enemy: {fileID: 0}
+  boss: {fileID: 0}
   combatManager: {fileID: 1090958575}
   fstStageEnemies:
   - {fileID: 11400000, guid: 4241495c1fdf04b4f951f3493f5da398, type: 2}
@@ -5409,7 +5411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1152452780
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8618,7 +8620,7 @@ RectTransform:
   m_Father: {fileID: 718303532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.01, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public EnemySpawn.Stage nextStage;
     public bool nextIsBoss;
     public EnemyData nextEnemy;
-    public bool isDead;
+
 
     void Awake()
     {
@@ -23,10 +23,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PrepareCombat(EnemySpawn.Stage stage, bool isBoss = false, EnemyData forcedEnemy = null)
+    public void PrepareCombat(EnemySpawn.Stage stage)
     {
         nextStage = stage;
-        nextIsBoss = isBoss;
-        nextEnemy = forcedEnemy;
     }
 }
