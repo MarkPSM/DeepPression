@@ -71,7 +71,7 @@ public class EnemyController : MonoBehaviour
             }
             
         }
-        if (isDead)
+        if (isDead && EnemyManager.Enemy.actualID == ID)
         {
             StartCoroutine(Death());
         }
@@ -91,6 +91,7 @@ public class EnemyController : MonoBehaviour
         {
             if (collision != null && collision.gameObject == player)
             {
+                characterController.canWalk = false;
                 GameManager.Instance.PrepareCombat(thisStage);
                 StartCoroutine(levelLoader.LoadPhase("CombatScene"));
 
@@ -106,6 +107,7 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator Death()
     {
+        characterController.canWalk = true;
         yield return new WaitForSeconds(1f);
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(2f);

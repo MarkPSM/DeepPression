@@ -77,6 +77,11 @@ public class CharacterController : MonoBehaviour
                 facingUp = !facingUp;
             }
         }
+        else
+        {
+            isWalking = false;
+            playerDirection = Vector2.zero;
+        }
 
     }
 

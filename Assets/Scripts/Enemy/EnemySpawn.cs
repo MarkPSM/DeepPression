@@ -39,7 +39,7 @@ public class EnemySpawn : MonoBehaviour
     void Awake()
     {
         isBoss = EnemyManager.Enemy.isBoss;
-        Debug.Log(isBoss);
+        Debug.Log("isBoss: " + isBoss);
         actualStage = GameManager.Instance.nextStage;
 
         if (isBoss == false)

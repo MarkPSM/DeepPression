@@ -77,6 +77,7 @@ public class EscManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
             {
                 inventory = false;
+                canvasPause.enabled = true;
 
                 if (firstPauseButton != null)
                     EventSystem.current.SetSelectedGameObject(firstPauseButton);
@@ -88,6 +89,10 @@ public class EscManager : MonoBehaviour
     {
         inventory = true;
         if (firstInventoryButton != null)
+        {
             EventSystem.current.SetSelectedGameObject(firstInventoryButton);
+            Debug.Log("Primeiro botão do inventário selecionado");
+            canvasPause.enabled = false;
+        }
     }
 }

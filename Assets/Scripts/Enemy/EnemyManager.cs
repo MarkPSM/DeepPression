@@ -55,6 +55,15 @@ public class EnemyManager : MonoBehaviour
             enemyController = GameObject.Find(inimigoAtual.name).GetComponent<EnemyController>();
 
             enemyController.isDead = isDead;
+
+            if (isDead)
+            {
+                Debug.Log("Inimigo " + actualID + " morto");
+            }   
+        } 
+        else
+        {
+            Debug.Log("enemies null");
         }
     }
 

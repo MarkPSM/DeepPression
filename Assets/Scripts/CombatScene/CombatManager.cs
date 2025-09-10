@@ -96,20 +96,31 @@ public class CombatManager : MonoBehaviour
         }
 
         if (enemySpawn.isBoss == false) 
-        { 
+        {
+            bossHealthBar.gameObject.SetActive(false);
+            bossSpeedBar.enabled = false;
+            if (bossSpeedBar.enabled == false)
+            {
+                Debug.Log("Status Boss desligado" + bossSpeedBar.enabled);
+            }
+            else
+            {
+                Debug.Log("Deu erro aqui");
+            }
+
             if (enemySpeedBar != null)
             {
                 enemySpeed = enemySpawn.enemy.speed;
 
-                    if (enemySpeedBar.value < 100 && enemyBarIsRunning == true)
-                        enemySpeedBar.value += enemySpeed * Time.deltaTime;
+                if (enemySpeedBar.value < 100 && enemyBarIsRunning == true)
+                    enemySpeedBar.value += enemySpeed * Time.deltaTime;
 
-                    if (enemySpeedBar.value == 100)
-                    {
-                        CharacterManager.Player.actualHP -= (enemySpawn.enemy.attack / CharacterManager.Player.Defense);
-                        enemySpeedBar.value = 0;
-                    }
-            } 
+                if (enemySpeedBar.value == 100)
+                {
+                    CharacterManager.Player.actualHP -= (enemySpawn.enemy.attack / CharacterManager.Player.Defense);
+                    enemySpeedBar.value = 0;
+                }
+            }
             else
             {
                 enemySpeedBar.enabled = false;
