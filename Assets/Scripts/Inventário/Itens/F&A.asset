@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: F&A
   itemDescription: "Fam\xEDlia & Amigos s\xE3o os primeiros a te apoiar. Procure-os,
     eles v\xE3o te ajudar! (Aumenta seu ataque baseado na sua defesa)"
+  icon: {fileID: -8253770017611508826, guid: 1c09786ce269c0e478b43588af799a8d, type: 3}
   healHP: 0
   healMP: 0
   increaseHP: 0

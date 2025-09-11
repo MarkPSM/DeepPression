@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: "For\xE7a!"
   itemDescription: "N\xE3o importa quantas vezes voc\xEA cai, e sim quantas vezes
     voc\xEA levanta! (Aumenta Attacm)"
+  icon: {fileID: 8459265523761832561, guid: f88d368861949e64e894abe2737d98d3, type: 3}
   healHP: 0
   healMP: 0
   increaseHP: 0
@@ -23,4 +24,4 @@ MonoBehaviour:
   increaseMentalAttack: 0
   increaseDefense: 0
   increaseSpeed: 0
-  quantity: 0
+  quantity: 2

@@ -3512,7 +3512,6 @@ RectTransform:
   m_Children:
   - {fileID: 499730058}
   - {fileID: 1695789675}
-  - {fileID: 1684468763}
   m_Father: {fileID: 493031892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6376,6 +6375,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 644340340}
+  - {fileID: 1684468763}
   m_Father: {fileID: 493031892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6904,7 +6904,7 @@ GameObject:
   - component: {fileID: 1684468765}
   - component: {fileID: 1684468764}
   m_Layer: 5
-  m_Name: PsiqueIcon (1)
+  m_Name: F&AIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6919,14 +6919,14 @@ RectTransform:
   m_GameObject: {fileID: 1684468762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3091797, y: 0.30917963, z: 0.30917963}
+  m_LocalScale: {x: 0.30917972, y: 0.30917963, z: 0.30917963}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 608970922}
+  m_Father: {fileID: 1477132306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.8, y: 43.7}
+  m_AnchoredPosition: {x: -41.8, y: -0.30000305}
   m_SizeDelta: {x: 94.2485, y: 94.2485}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1684468764

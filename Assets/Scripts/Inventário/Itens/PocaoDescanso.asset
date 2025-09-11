@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PocaoDoDescanso
   itemDescription: O descanso faz parte do Treino (Restaura PV)
+  icon: {fileID: 5264100762604051792, guid: b795c7c53b91e0249a90afa0096846a7, type: 3}
   healHP: 20
   healMP: 0
   increaseHP: 0

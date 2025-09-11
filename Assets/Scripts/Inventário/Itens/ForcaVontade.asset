@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "For\xE7a de Vontade"
   itemDescription: "N\xE3o desista. voc\xEA consegue!!! (Aumenta FV)"
+  icon: {fileID: -6774248734823240854, guid: 16d513444fcc78e47827eb569a81e7c5, type: 3}
   healHP: 0
   healMP: 0
   increaseHP: 0

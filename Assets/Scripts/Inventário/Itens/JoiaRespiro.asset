@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Joia do Respiro
   itemDescription: "Respire bem fundo quando a situa\xE7\xE3o apertar. Se tiver ansiedade,
     respire por 4 segundos, segure por 7 e solte por 8. (Restaura FV)"
+  icon: {fileID: 287788731696758252, guid: 1dd0db02b25b28249be3704948eb4678, type: 3}
   healHP: 0
   healMP: 10
   increaseHP: 0

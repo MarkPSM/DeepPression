@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bf7e9567a8390643a8332f58728bded, type: 3}
-  m_Name: Realidade
+  m_Name: Psique
   m_EditorClassIdentifier: 
-  itemName: Realidade
-  itemDescription: "Enxergue as coisas como elas s\xE3o, nem tudo s\xE3o espinhos
-    ou flores (Aumenta a velocidade em 10 durante o combate)"
-  icon: {fileID: -6446353091377949219, guid: 9a9fc7e97fed8914e80e9bcc6969aae0, type: 3}
+  itemName: 
+  itemDescription: 
+  icon: {fileID: 21300000, guid: 31aae1c77e4092242bc2089832c2eca1, type: 3}
   healHP: 0
   healMP: 0
   increaseHP: 0
@@ -23,5 +22,5 @@ MonoBehaviour:
   increaseAttack: 0
   increaseMentalAttack: 0
   increaseDefense: 0
-  increaseSpeed: 10
+  increaseSpeed: 0
   quantity: 0

@@ -5,7 +5,8 @@ public class ItemsData : ScriptableObject
 {
     [Header("Item Info")]
     public string itemName;
-    public string itemDescription;
+    [TextArea] public string itemDescription;
+    public Sprite icon;
 
     [Header("Effects")]
     public int healHP;

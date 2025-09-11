@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Exercicio
   itemDescription: "Exercitar melhora sua disposi\xE7\xE3o e sua auto-confian\xE7a!
     (Dobra o seu Ataque)"
+  icon: {fileID: 21300000, guid: 3f0dbaf340f21b540bdebf88d026ec3e, type: 3}
   healHP: 0
   healMP: 0
   increaseHP: 0
@@ -23,4 +24,4 @@ MonoBehaviour:
   increaseMentalAttack: 0
   increaseDefense: 0
   increaseSpeed: 0
-  quantity: 0
+  quantity: 1

@@ -16,6 +16,7 @@ MonoBehaviour:
   itemDescription: "Definitivamente \xE9 um meio, por mais que possa te causar enjoo,
     hipotens\xE3o. vis\xE3o turva e depend\xEAncia (dobra a velocidade durante o
     combate com um custo...)"
+  icon: {fileID: 21300000, guid: f6e896c45ac9a5c4aa480c7c09376602, type: 3}
   healHP: 0
   healMP: 0
   increaseHP: 0
