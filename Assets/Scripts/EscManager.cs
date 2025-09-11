@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -88,11 +89,19 @@ public class EscManager : MonoBehaviour
     public void Inventory()
     {
         inventory = true;
-        if (firstInventoryButton != null)
+        canvasPause.enabled = false;
+
+        StartCoroutine(SelectFirstInventoryButton());
+    }
+
+    public IEnumerator SelectFirstInventoryButton()
+    {
+        yield return null;
+        if (firstInventoryButton != null && firstInventoryButton.activeInHierarchy)
         {
+            EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(firstInventoryButton);
             Debug.Log("Primeiro botão do inventário selecionado");
-            canvasPause.enabled = false;
         }
     }
 }

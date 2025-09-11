@@ -98,7 +98,7 @@ public class CombatManager : MonoBehaviour
         if (enemySpawn.isBoss == false) 
         {
             bossHealthBar.gameObject.SetActive(false);
-            bossSpeedBar.enabled = false;
+            bossSpeedBar.gameObject.SetActive(false);
             if (bossSpeedBar.enabled == false)
             {
                 Debug.Log("Status Boss desligado" + bossSpeedBar.enabled);

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf7e9567a8390643a8332f58728bded, type: 3}
+  m_Name: "Exerc\xEDcio"
+  m_EditorClassIdentifier: 
+  itemName: Exercicio
+  itemDescription: "Exercitar melhora sua disposi\xE7\xE3o e sua auto-confian\xE7a!
+    (Dobra o seu Ataque)"
+  healHP: 0
+  healMP: 0
+  increaseHP: 0
+  increaseMP: 0
+  increaseAttack: 0
+  increaseMentalAttack: 0
+  increaseDefense: 0
+  increaseSpeed: 0
+  quantity: 0
