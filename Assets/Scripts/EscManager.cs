@@ -22,7 +22,7 @@ public class EscManager : MonoBehaviour
 
     [Header("Navigation")]
     public GameObject firstPauseButton;
-    public GameObject firstInventoryButton;
+    public GameObject itemList;
 
 
     void Awake()
@@ -97,10 +97,13 @@ public class EscManager : MonoBehaviour
     public IEnumerator SelectFirstInventoryButton()
     {
         yield return null;
-        if (firstInventoryButton != null && firstInventoryButton.activeInHierarchy)
+        if (itemList != null && itemList.activeInHierarchy)
         {
+            Transform firstChild = itemList.transform.GetChild(0);
+            GameObject firstItem = firstChild.gameObject;
+
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstInventoryButton);
+            EventSystem.current.SetSelectedGameObject(firstItem);
             Debug.Log("Primeiro botão do inventário selecionado");
         }
     }

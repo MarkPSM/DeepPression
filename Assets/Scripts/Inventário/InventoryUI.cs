@@ -37,13 +37,17 @@ public class InventoryUI : MonoBehaviour
         {
             if (item.quantity <= 0)
             {
-                return;
+                continue;
             }
-            GameObject buttonGO = Instantiate(itemButtonPrefab, itemListParent);
-            InventoryButtonUI buttonUI = buttonGO.GetComponent<InventoryButtonUI>();
-            buttonUI.Setup(item, this);
-            Debug.Log(item.name);
+            else
+            {
+                GameObject buttonGO = Instantiate(itemButtonPrefab, itemListParent);
+                InventoryButtonUI buttonUI = buttonGO.GetComponent<InventoryButtonUI>();
+                buttonUI.Setup(item, this);
+                Debug.Log(item.name);
+            }
         }
+
 
         ClearDetails();
     }
