@@ -26,8 +26,6 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-
-
         if (Input.GetKeyDown(KeyCode.Z) && action != null)
         {
             action.Invoke();
@@ -38,9 +36,15 @@ public class Interactor : MonoBehaviour
     {
         if (other != null)
         {
-            if (other.CompareTag("RoomChest"))
+            interactedObject = other.gameObject;
+
+            if (other.CompareTag("Chest"))
             {
-                
+                ChestData chestData = interactedObject.GetComponent<ChestData>();
+                if (chestData != null)
+                {
+                    action = AbrirBau;
+                }
             }
         }
         else
@@ -61,14 +65,16 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    void FODASE()
+    void AbrirBau()
     {
         if (!alreadyChating)
         {
             alreadyChating = true;
-            dataController.WhichData(1);
+            dataController.WhichData(ChestManagement.chestManagement.actualID);
             dialogueSystem.Next();
             uiInteract = false;
+
+            ChestManagement.chestManagement.isOpened = false;
             return;
         }
     }

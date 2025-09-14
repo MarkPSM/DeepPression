@@ -6,13 +6,7 @@ public class DataController : MonoBehaviour
     public DialogueSystem dialogueSystem;
 
     // Na Unity iremos colocar os dialogos dentro dessas variaveis
-    public DialogueData data1;
-    //public DialogueData data2;
-    //public DialogueData data3;
-    //public DialogueData data4;
-
-    //public DialogueData data5;
-    //public DialogueData data6;
+    public DialogueData[] data;
 
 
     //Função que será ativada em outros scripts para trocar a Proxima Data de dialogo
@@ -20,8 +14,12 @@ public class DataController : MonoBehaviour
     {
         switch (valor)
         {
+            case 0:
+                dialogueSystem.Which(data[0]);
+                dialogueSystem.Reiniciate();
+                break;
             case 1:
-                dialogueSystem.Which(data1);
+                dialogueSystem.Which(data[1]);
                 dialogueSystem.Reiniciate();
                 break;
             //case 2:

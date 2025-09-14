@@ -22174,6 +22174,7 @@ GameObject:
   - component: {fileID: 588384426}
   - component: {fileID: 588384425}
   - component: {fileID: 588384427}
+  - component: {fileID: 588384428}
   m_Layer: 0
   m_Name: RoomChest
   m_TagString: RoomChest
@@ -22298,6 +22299,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.22, y: 0.21}
   m_EdgeRadius: 0
+--- !u!114 &588384428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588384424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598b61fc8c755c14fbf100ee9753f556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestID: 1
+  closedSprite: {fileID: -4963943773778265686, guid: 6971c139ca9e3cb47a14a7a6a2938747, type: 3}
+  openedSprite: {fileID: 3962188445732754432, guid: 6971c139ca9e3cb47a14a7a6a2938747, type: 3}
+  interactableEffect: {fileID: 132434310}
+  isOpened: 0
+  items:
+  - {fileID: 11400000, guid: d2a901acc7ff83e4a8205c17a1ce8bd3, type: 2}
+  - {fileID: 11400000, guid: ded6150bcf097a649850783067658100, type: 2}
 --- !u!1 &590137651
 GameObject:
   m_ObjectHideFlags: 0
@@ -34186,6 +34207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 876671779}
+  - component: {fileID: 876671780}
   m_Layer: 0
   m_Name: Chests
   m_TagString: Untagged
@@ -34209,6 +34231,18 @@ Transform:
   - {fileID: 588384426}
   m_Father: {fileID: 1729749117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &876671780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876671778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b48c466afd22ed40af0211ce469342d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &880735118
 GameObject:
   m_ObjectHideFlags: 0

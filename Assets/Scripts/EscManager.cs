@@ -84,6 +84,14 @@ public class EscManager : MonoBehaviour
                     EventSystem.current.SetSelectedGameObject(firstPauseButton);
             }
         }
+
+        if (canvasInventory != null)
+        {
+            if (Input.GetKeyDown (KeyCode.I))
+            {
+                Inventory();
+            }
+        }
     }
 
     public void Inventory()
