@@ -20434,7 +20434,7 @@ Transform:
   m_GameObject: {fileID: 537097535}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.69, y: 20.1, z: -0.00000014857}
+  m_LocalPosition: {x: -5.39, y: 17.61, z: -0.00000014857}
   m_LocalScale: {x: 9.928553, y: 9.928553, z: 9.928553}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22177,7 +22177,7 @@ GameObject:
   - component: {fileID: 588384428}
   m_Layer: 0
   m_Name: RoomChest
-  m_TagString: RoomChest
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22246,8 +22246,8 @@ Transform:
   m_GameObject: {fileID: 588384424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.552, y: 0.5514056, z: -0.0006951061}
-  m_LocalScale: {x: 0.32620656, y: 0.32620656, z: 0.32620656}
+  m_LocalPosition: {x: -1.5526, y: 0.5621, z: -0.00069511}
+  m_LocalScale: {x: 0.3931095, y: 0.3931095, z: 0.3931095}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 132434313}
@@ -34243,6 +34243,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b48c466afd22ed40af0211ce469342d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chests: []
+  chestData: {fileID: 0}
+  actualID: 0
+  items: []
+  isOpened: 0
 --- !u!1 &880735118
 GameObject:
   m_ObjectHideFlags: 0
@@ -35421,7 +35426,7 @@ GameObject:
   - component: {fileID: 931956897}
   m_Layer: 0
   m_Name: rustic_furnitureset_28
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63111,7 +63116,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueSystem: {fileID: 1599418256}
-  data1: {fileID: 11400000, guid: 302b7f86b4f206a4ab782de77b2d86c0, type: 2}
+  data:
+  - {fileID: 11400000, guid: 117a3f47b215fcb4fa00fe6e14cdaf4a, type: 2}
+  - {fileID: 11400000, guid: 5f39e6463440422478deb0a66cba5f65, type: 2}
+  - {fileID: 11400000, guid: 4626e90d400cd834e8f1a7aee81e3a14, type: 2}
 --- !u!114 &1599418256
 MonoBehaviour:
   m_ObjectHideFlags: 0
