@@ -89,6 +89,7 @@ public class EscManager : MonoBehaviour
         {
             if (Input.GetKeyDown (KeyCode.I))
             {
+                characterController.canWalk = false;
                 Inventory();
             }
         }
@@ -98,6 +99,7 @@ public class EscManager : MonoBehaviour
     {
         inventory = true;
         canvasPause.enabled = false;
+        InventoryUI.Instance.hasBeenRefreshed = false;
 
         StartCoroutine(SelectFirstInventoryButton());
     }

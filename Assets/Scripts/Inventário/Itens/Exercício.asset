@@ -24,4 +24,4 @@ MonoBehaviour:
   increaseMentalAttack: 0
   increaseDefense: 0
   increaseSpeed: 0
-  quantity: 1
+  quantity: 0

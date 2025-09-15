@@ -70,11 +70,11 @@ public class Interactor : MonoBehaviour
         if (!alreadyChating)
         {
             alreadyChating = true;
-            dataController.WhichData(ChestManagement.chestManagement.actualID);
+            dataController.WhichData(ChestManagement.chestManagement.actualID + 1);
             dialogueSystem.Next();
             uiInteract = false;
 
-            ChestManagement.chestManagement.isOpened = false;
+            ChestManagement.chestManagement.isOpened = true;
             return;
         }
     }

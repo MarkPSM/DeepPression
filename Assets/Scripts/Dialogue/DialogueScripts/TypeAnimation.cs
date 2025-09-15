@@ -12,7 +12,7 @@ public class TypeAnimation : MonoBehaviour
 
     public string fullText;
 
-    float typeDelay = 0.05f;
+    float typeDelay = 0.025f;
     
     int i = 0;
 

@@ -14,32 +14,28 @@ public class DataController : MonoBehaviour
     {
         switch (valor)
         {
-            case 0:
-                dialogueSystem.Which(data[0]);
-                dialogueSystem.Reiniciate();
-                break;
             case 1:
                 dialogueSystem.Which(data[1]);
                 dialogueSystem.Reiniciate();
                 break;
-            //case 2:
-            //    dialogueSystem.Which(data2);
-            //    //dialogueSystem.Reiniciate();
-            //    break;
-            //case 3:
-            //    dialogueSystem.Which(data3);
-            //    //dialogueSystem.Reiniciate();
-            //    break;
-            //case 4:
-            //    dialogueSystem.Which(data4);
-            //    //dialogueSystem.Reiniciate();
-            //    break;
-            //case 5:
-            //    dialogueSystem.Which(data5);
-            //    break;
-            //case 6:
-            //    dialogueSystem.Which(data6);
-            //    break;
+            case 2:
+                dialogueSystem.Which(data[2]);
+                //dialogueSystem.Reiniciate();
+                break;
+                //case 3:
+                //    dialogueSystem.Which(data3);
+                //    //dialogueSystem.Reiniciate();
+                //    break;
+                //case 4:
+                //    dialogueSystem.Which(data4);
+                //    //dialogueSystem.Reiniciate();
+                //    break;
+                //case 5:
+                //    dialogueSystem.Which(data5);
+                //    break;
+                //case 6:
+                //    dialogueSystem.Which(data6);
+                //    break;
         }
     }
 

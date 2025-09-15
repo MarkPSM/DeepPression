@@ -15,8 +15,10 @@ MonoBehaviour:
   talkScript:
   - icon: {fileID: -9180426125723624345, guid: 5d37beef9dec4e945a66431b863b5e75, type: 3}
     name: Clara
-    text: "Vou tentar Enfrentar isso de uma vez por todas! Parece que tem mais uma
-      coisa no ba\xFA..."
+    text: Vou tentar Enfrentar isso de uma vez por todas!
+  - icon: {fileID: -9180426125723624345, guid: 5d37beef9dec4e945a66431b863b5e75, type: 3}
+    name: Clara
+    text: "Parece que tem mais uma coisa no ba\xFA..."
   - icon: {fileID: -9180426125723624345, guid: 5d37beef9dec4e945a66431b863b5e75, type: 3}
     name: Clara
     text: "Se eu acessar o Invent\xE1rio(I) talvez eu consiga usar esse item."

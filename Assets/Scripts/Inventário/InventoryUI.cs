@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI Instance;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
     public Transform itemListParent;   // onde os botões vão aparecer
@@ -20,36 +22,45 @@ public class InventoryUI : MonoBehaviour
     [Header("Data")]
     public List<ItemsData> playerItems = new List<ItemsData>();
 
-    private void OnEnable()
+    public bool hasBeenRefreshed = false;
+
+    private void FixedUpdate()
     {
         RefreshInventory();
+
+        Debug.Log(hasBeenRefreshed);
     }
 
     public void RefreshInventory()
     {
-        foreach (Transform child in itemListParent)
-        {
-            Destroy(child.gameObject);
-            Debug.Log("crianças destruidas");
-        }
-
-        foreach (var item in playerItems)
-        {
-            if (item.quantity <= 0)
+        if (hasBeenRefreshed == false)
+        { 
+            foreach (Transform child in itemListParent)
             {
-                continue;
+                Destroy(child.gameObject);
+                Debug.Log("crianças destruidas");
             }
-            else
+
+            foreach (var item in playerItems)
             {
-                GameObject buttonGO = Instantiate(itemButtonPrefab, itemListParent);
-                InventoryButtonUI buttonUI = buttonGO.GetComponent<InventoryButtonUI>();
-                buttonUI.Setup(item, this);
-                Debug.Log(item.name);
+                if (item.quantity <= 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    GameObject buttonGO = Instantiate(itemButtonPrefab, itemListParent);
+                    InventoryButtonUI buttonUI = buttonGO.GetComponent<InventoryButtonUI>();
+                    buttonUI.Setup(item, this);
+                    Debug.Log(item.name);
+                }
             }
+
+
+            ClearDetails();
+
+            hasBeenRefreshed = true;
         }
-
-
-        ClearDetails();
     }
 
     public void ShowDetails(ItemsData item)

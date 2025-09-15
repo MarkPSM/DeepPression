@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bf7e9567a8390643a8332f58728bded, type: 3}
-  m_Name: PocaoDescanso
+  m_Name: Defesa
   m_EditorClassIdentifier: 
-  itemName: PocaoDoDescanso
-  itemDescription: O descanso faz parte do Treino (Restaura PV)
-  icon: {fileID: 5264100762604051792, guid: b795c7c53b91e0249a90afa0096846a7, type: 3}
-  healHP: 20
+  itemName: Calma
+  itemDescription: "N\xE3o ache que todas as pessoas engra\xE7adas t\xEAm uma vida
+    feliz, uma bela risada pode ser um choro na alma."
+  icon: {fileID: -8296451459763184795, guid: a638767f2e2ca7d47bee95044ba62425, type: 3}
+  healHP: 0
   healMP: 0
   increaseHP: 0
   increaseMP: 0
   increaseAttack: 0
   increaseMentalAttack: 0
-  increaseDefense: 0
+  increaseDefense: 10
   increaseSpeed: 0
-  quantity: 2
+  quantity: 0

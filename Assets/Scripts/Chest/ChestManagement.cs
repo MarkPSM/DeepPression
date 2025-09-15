@@ -36,29 +36,34 @@ public class ChestManagement : MonoBehaviour
         }
 
         chests = objs.ToArray();
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (chests != null)
         {
-            GameObject inimigoAtual = chests[actualID];
+            GameObject bauAtual = chests[actualID];
 
-            chestData = GameObject.Find(inimigoAtual.name).GetComponent<ChestData>();
+            chestData = GameObject.Find(bauAtual.name).GetComponent<ChestData>();
 
-            chestData.isOpened = isOpened;
 
             if (isOpened)
             {
-                Debug.Log("Baú " + actualID + " aberto");
+                Debug.Log("Baú " + actualID + " aberto = " + isOpened);
+
+                chestData.OpenChest();
+
+                chestData.isOpened = isOpened;
+                
+                bauAtual = null;
+
+                isOpened = false;
             }
         }
         else
         {
             Debug.Log("chests null");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
