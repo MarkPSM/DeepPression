@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,6 +53,8 @@ public class CombatManager : MonoBehaviour
 
             bossHealth = enemySpawn.boss.maxHP;
         }
+
+        levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
     }
 
     void Update()
@@ -98,15 +99,7 @@ public class CombatManager : MonoBehaviour
         if (enemySpawn.isBoss == false) 
         {
             bossHealthBar.gameObject.SetActive(false);
-            bossSpeedBar.gameObject.SetActive(false);
-            if (bossSpeedBar.enabled == false)
-            {
-                Debug.Log("Status Boss desligado" + bossSpeedBar.enabled);
-            }
-            else
-            {
-                Debug.Log("Deu erro aqui");
-            }
+            bossSpeedBar.gameObject.SetActive(false);   
 
             if (enemySpeedBar != null)
             {
@@ -131,7 +124,7 @@ public class CombatManager : MonoBehaviour
                 enemyHealthBar.value = enemyHealth;
                 if (enemyHealthBar.value <= 0)
                 {
-                    Debug.Log("Inimigo Derrotado");
+                    //Debug.Log("Inimigo Derrotado");
                     StartCoroutine(levelLoader.LoadPhase(GameManager.Instance.nextStage.ToString()));
                     EnemyManager.Enemy.isDead = true;
                 }

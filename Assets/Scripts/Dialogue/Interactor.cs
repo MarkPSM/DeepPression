@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Interactor : MonoBehaviour
 {
@@ -16,12 +13,12 @@ public class Interactor : MonoBehaviour
 
     public GameObject interactedObject;
 
-    [SerializeField] bool uiInteract;
+    //[SerializeField] bool uiInteract;
     [SerializeField] bool alreadyChating;
 
     void Start()
     {
-        uiInteract = true;
+        
     }
 
     void Update()
@@ -30,6 +27,16 @@ public class Interactor : MonoBehaviour
         {
             action.Invoke();
         }
+
+        if (dataController == null)
+            dataController = GameObject.Find("DialogueManager").GetComponent<DataController>();
+        else
+            return;
+
+        if (dialogueSystem == null)
+            dialogueSystem = GameObject.Find("DialogueManager").GetComponent<DialogueSystem>();
+        else
+            return;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -40,11 +47,18 @@ public class Interactor : MonoBehaviour
 
             if (other.CompareTag("Chest"))
             {
+                Debug.Log("Collidindo cm um bau");
                 ChestData chestData = interactedObject.GetComponent<ChestData>();
+
                 if (chestData != null)
                 {
+                    ChestManagement.chestManagement.chestData = chestData;
                     action = AbrirBau;
                 }
+            }
+            else
+            {
+                Debug.Log("Não sei o que está collidindo");
             }
         }
         else
@@ -72,7 +86,7 @@ public class Interactor : MonoBehaviour
             alreadyChating = true;
             dataController.WhichData(ChestManagement.chestManagement.actualID + 1);
             dialogueSystem.Next();
-            uiInteract = false;
+            //uiInteract = false;
 
             ChestManagement.chestManagement.isOpened = true;
             return;

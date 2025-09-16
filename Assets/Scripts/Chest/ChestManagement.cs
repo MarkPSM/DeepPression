@@ -45,11 +45,11 @@ public class ChestManagement : MonoBehaviour
         {
             GameObject bauAtual = chests[actualID];
 
-            chestData = GameObject.Find(bauAtual.name).GetComponent<ChestData>();
+            //chestData = GameObject.Find(bauAtual.name).GetComponent<ChestData>();
 
 
             if (isOpened)
-            {
+            {   
                 Debug.Log("Baú " + actualID + " aberto = " + isOpened);
 
                 chestData.OpenChest();

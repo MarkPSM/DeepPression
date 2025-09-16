@@ -40,13 +40,13 @@ public class EnemyManager : MonoBehaviour
 
         enemies = objs.ToArray();
 
-        foreach (GameObject enemy in enemies)
-        {
-            if (enemy != null)
-            {
-                DontDestroyOnLoad(enemy);
-            }
-        }
+        //foreach (GameObject enemy in enemies)
+        //{
+        //    if (enemy != null)
+        //    {
+        //        DontDestroyOnLoad(enemy);
+        //    }
+        //}
 
         if (enemies != null)
         {
@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour
             if (isDead)
             {
                 Debug.Log("Inimigo " + actualID + " morto");
-            }   
+            }
         } 
         else
         {

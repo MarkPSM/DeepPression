@@ -1,13 +1,10 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public static InventoryUI Instance;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
     public Transform itemListParent;   // onde os botões vão aparecer
@@ -22,13 +19,18 @@ public class InventoryUI : MonoBehaviour
     [Header("Data")]
     public List<ItemsData> playerItems = new List<ItemsData>();
 
-    public bool hasBeenRefreshed = false;
+    public bool hasBeenRefreshed;
 
-    private void FixedUpdate()
+    private void Start()
+    {
+        hasBeenRefreshed = false;
+
+        //Debug.Log(hasBeenRefreshed);
+    }
+
+    private void Update()
     {
         RefreshInventory();
-
-        Debug.Log(hasBeenRefreshed);
     }
 
     public void RefreshInventory()
@@ -38,7 +40,7 @@ public class InventoryUI : MonoBehaviour
             foreach (Transform child in itemListParent)
             {
                 Destroy(child.gameObject);
-                Debug.Log("crianças destruidas");
+                //Debug.Log("crianças destruidas");
             }
 
             foreach (var item in playerItems)
@@ -52,7 +54,7 @@ public class InventoryUI : MonoBehaviour
                     GameObject buttonGO = Instantiate(itemButtonPrefab, itemListParent);
                     InventoryButtonUI buttonUI = buttonGO.GetComponent<InventoryButtonUI>();
                     buttonUI.Setup(item, this);
-                    Debug.Log(item.name);
+                    //Debug.Log(item.name);
                 }
             }
 
@@ -60,6 +62,7 @@ public class InventoryUI : MonoBehaviour
             ClearDetails();
 
             hasBeenRefreshed = true;
+            //Debug.Log(hasBeenRefreshed);
         }
     }
 

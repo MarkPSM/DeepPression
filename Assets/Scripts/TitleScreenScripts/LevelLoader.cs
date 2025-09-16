@@ -26,7 +26,7 @@ public class LevelLoader : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(LoadPhase("GameScene"));
+        StartCoroutine(LoadPhase("FirstStage"));
     }
 
     public IEnumerator LoadPhase(string phaseName)

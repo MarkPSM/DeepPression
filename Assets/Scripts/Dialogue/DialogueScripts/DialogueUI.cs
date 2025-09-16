@@ -44,7 +44,7 @@ public class DialogueUI : MonoBehaviour
 
     public void SetName(string name)
     {
-        Debug.Log(name);
+        //Debug.Log(name);
         nameText.text = name;
 
     }

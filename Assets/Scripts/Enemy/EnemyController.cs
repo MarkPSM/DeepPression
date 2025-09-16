@@ -32,11 +32,16 @@ public class EnemyController : MonoBehaviour
         target = player.transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     void Update()
     {
-        isDead = EnemyManager.Enemy.isDead;
+        if (levelLoader == null)
+            levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
+        if (EnemyManager.Enemy.actualID == ID)
+            isDead = EnemyManager.Enemy.isDead;
 
         if (!isDead)
         {
@@ -53,23 +58,24 @@ public class EnemyController : MonoBehaviour
         {
             float distance = Vector2.Distance(target.position, transform.position);
 
-            if (distance <= areaRange && distance >= 2f)
+            if (distance <= areaRange && distance >= 2.25f)
             {
                 Vector2 direction = (target.position - transform.position).normalized;
                 rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
 
                 animator.SetBool("isWalking", true);
             }
-            else if (distance <= 2f)
+            else if (distance <= 2.25f)
             {
                 rb.MovePosition(rb.position);
                 animator.SetBool("isWalking", false);
+                characterController.canWalk = false;
             }
             else
             {
                 animator.SetBool("isWalking", false);
             }
-            
+
         }
         if (isDead && EnemyManager.Enemy.actualID == ID)
         {
@@ -91,12 +97,13 @@ public class EnemyController : MonoBehaviour
         {
             if (collision != null && collision.gameObject == player)
             {
-                characterController.canWalk = false;
                 GameManager.Instance.PrepareCombat(thisStage);
                 StartCoroutine(levelLoader.LoadPhase("CombatScene"));
 
                 EnemyManager.Enemy.isBoss = isBoss;
                 EnemyManager.Enemy.actualID = ID;
+
+                canCollide = false;
             }
         }
         else
@@ -113,5 +120,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         Destroy(this.gameObject);
+
+        EnemyManager.Enemy.isDead = false;
     }
 }

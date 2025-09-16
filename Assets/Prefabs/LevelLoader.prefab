@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7070048114536003877}
   - component: {fileID: 5405294911489981674}
   - component: {fileID: 7880529857059014457}
-  - component: {fileID: 2573734107957077112}
   m_Layer: 0
   m_Name: Black
   m_TagString: Untagged
@@ -99,19 +98,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2573734107957077112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660422145221641303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f742c1c0c3fbf5a4597bc6a489c52a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transition: {fileID: 7880529857059014457}
 --- !u!1 &3237222838451149403
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1699606814082093793}
+  - component: {fileID: 7518833231959968323}
   m_Layer: 0
   m_Name: LevelLoader
   m_TagString: Untagged
@@ -144,6 +131,19 @@ Transform:
   - {fileID: 8854378887693328968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7518833231959968323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237222838451149403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f742c1c0c3fbf5a4597bc6a489c52a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 7880529857059014457}
 --- !u!1 &3530008775755440961
 GameObject:
   m_ObjectHideFlags: 0

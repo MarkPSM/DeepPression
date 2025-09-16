@@ -8,6 +8,7 @@ public class EscManager : MonoBehaviour
 
     [Header("References")]
     public CharacterController characterController;
+    public InventoryUI inventoryUI;
 
     [Header("OptionsTabs")]
     public bool isPaused;
@@ -87,9 +88,11 @@ public class EscManager : MonoBehaviour
 
         if (canvasInventory != null)
         {
-            if (Input.GetKeyDown (KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I))
             {
                 characterController.canWalk = false;
+                inventoryUI.hasBeenRefreshed = false;
+                Debug.Log(inventoryUI.hasBeenRefreshed);
                 Inventory();
             }
         }
@@ -99,7 +102,6 @@ public class EscManager : MonoBehaviour
     {
         inventory = true;
         canvasPause.enabled = false;
-        InventoryUI.Instance.hasBeenRefreshed = false;
 
         StartCoroutine(SelectFirstInventoryButton());
     }

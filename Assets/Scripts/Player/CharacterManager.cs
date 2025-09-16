@@ -1,4 +1,3 @@
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -33,14 +32,14 @@ public class CharacterManager : MonoBehaviour
         maxHP = 100;
         actualHP = 100;
 
-        Debug.Log($"actualHP:{actualHP} / maxHP:{maxHP}");
+        //Debug.Log($"actualHP:{actualHP} / maxHP:{maxHP}"); 
 
         maxMP = 20;
         actualMP = 20;
 
-        Attack = 5;
-        mentalAttack = 1;
-        Defense = 1;
-        Speed = 20;
+        Attack = 20;
+        mentalAttack = 20;
+        Defense = 2;
+        Speed = 25;
     }
 }
