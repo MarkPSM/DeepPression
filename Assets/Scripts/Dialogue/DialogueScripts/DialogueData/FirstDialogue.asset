@@ -15,4 +15,4 @@ MonoBehaviour:
   talkScript:
   - icon: {fileID: -9180426125723624345, guid: 5d37beef9dec4e945a66431b863b5e75, type: 3}
     name: Clara
-    text: Preciso pensar o que digitar aqui
+    text: ...

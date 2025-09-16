@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Interactor : MonoBehaviour
@@ -13,12 +15,14 @@ public class Interactor : MonoBehaviour
 
     public GameObject interactedObject;
 
+    private ChestData chestData;
+
     //[SerializeField] bool uiInteract;
-    [SerializeField] bool alreadyChating;
+    public bool alreadyChating;
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -37,6 +41,11 @@ public class Interactor : MonoBehaviour
             dialogueSystem = GameObject.Find("DialogueManager").GetComponent<DialogueSystem>();
         else
             return;
+
+        if (alreadyChating && Input.GetKeyDown(KeyCode.X))
+        {
+            dialogueSystem.CancelDialogue();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -48,11 +57,12 @@ public class Interactor : MonoBehaviour
             if (other.CompareTag("Chest"))
             {
                 Debug.Log("Collidindo cm um bau");
-                ChestData chestData = interactedObject.GetComponent<ChestData>();
+                chestData = interactedObject.GetComponent<ChestData>();
 
                 if (chestData != null)
                 {
                     ChestManagement.chestManagement.chestData = chestData;
+                    ChestManagement.chestManagement.actualID = chestData.chestID;
                     action = AbrirBau;
                 }
             }
@@ -81,12 +91,12 @@ public class Interactor : MonoBehaviour
 
     void AbrirBau()
     {
-        if (!alreadyChating)
+        if (!alreadyChating && !chestData.isOpened)
         {
             alreadyChating = true;
-            dataController.WhichData(ChestManagement.chestManagement.actualID + 1);
+            characterController.canWalk = false;
+            dataController.WhichData(ChestManagement.chestManagement.actualID);
             dialogueSystem.Next();
-            //uiInteract = false;
 
             ChestManagement.chestManagement.isOpened = true;
             return;

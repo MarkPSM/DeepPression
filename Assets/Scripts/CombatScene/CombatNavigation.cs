@@ -7,12 +7,14 @@ public class CombatNavigation : MonoBehaviour
 {
     [Header("References")]
     public CombatManager combatManager;
+    public InventoryUI inventoryUI;
 
     [Header("Setup")]
     public GameObject initialSetup;
     public GameObject enfrentarSetup;
     public GameObject hobbySetup;
     public GameObject itensSetup;
+
 
     public Button[] botoes;
 
@@ -37,6 +39,7 @@ public class CombatNavigation : MonoBehaviour
                     if (objectSelected != null)
                     {
                         Button btn = objectSelected.GetComponent<Button>();
+                        UpdateButtonAvaliability();
                         if (btn != null)
                         {
                             btn.onClick.Invoke();
@@ -161,4 +164,69 @@ public class CombatNavigation : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
     }
 
+    private void UpdateButtonAvaliability()
+    {
+        foreach (Button btn in botoes)
+        {
+
+            bool canUse = true;
+            switch (btn.name)
+            {
+                case "btnEnfrentar":
+                    canUse = HasItem("Enfrentar");
+                    break;
+
+                case "btnF&A":
+                    canUse = HasItem("F&A");
+                    break;
+
+                case "btnCVV":
+                    canUse = HasItem("CVV");
+                    break;
+
+                case "btnPsique":
+                    canUse = HasItem("Psique");
+                    break;
+
+                case "btnMúsica":
+                    canUse = HasItem("Música");
+                    break;
+
+                case "btnExercícios":
+                    canUse = HasItem("Exercícios");
+                    break;
+
+                case "btnLeitura":
+                    canUse = HasItem("Leitura");
+                    break;
+
+                case "btnConversa":
+                    canUse = HasItem("Conversa");
+                    break;
+
+                case "btnPocao":
+                    canUse = HasItem("Poção");
+                    break;
+                case "btnJoia":
+                    canUse = HasItem("Joia");
+                    break;
+                case "btnRealismo":
+                    canUse = HasItem("Realismo");
+                    break;
+                case "btnPilula":
+                    canUse = HasItem("Pílula");
+                    break;
+            }
+        }
+    }
+
+    private bool HasItem(string itemName)
+    {
+        foreach (var item in inventoryUI.playerItems)
+        {
+            if (item.itemName == itemName && item.quantity > 0)
+                return true;
+        }
+        return false;
+    }
 }

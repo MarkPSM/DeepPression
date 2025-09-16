@@ -14,6 +14,10 @@ public class DataController : MonoBehaviour
     {
         switch (valor)
         {
+            case 0:
+                dialogueSystem.Which(data[0]);
+                dialogueSystem.Reiniciate();
+                break;
             case 1:
                 dialogueSystem.Which(data[1]);
                 dialogueSystem.Reiniciate();

@@ -20,6 +20,8 @@ public class DialogueSystem : MonoBehaviour
     public DataController dataController;
     public DialogueUI dialogueUI;
     public TypeAnimation typetext;
+    public Interactor Interactor;
+    public CharacterController CharacterController;
 
     //Variaveis para confirmar se o texto acabou ou não
     int currentText = 0;
@@ -44,6 +46,8 @@ public class DialogueSystem : MonoBehaviour
     {
         //Aqui adicionamos a função OnTypeFinished() a variavel Action TypeFinished do script TypeAnimation
         typetext.TypeFinished = OnTypeFinished;
+        Interactor = GameObject.Find("Player").GetComponent<Interactor>();
+        CharacterController = GameObject.Find("Player").GetComponent<CharacterController>();
     }
 
     void Start()
@@ -117,7 +121,7 @@ public class DialogueSystem : MonoBehaviour
     void Waiting()
     {
         // Aqui verificamos se o botão Enter foi pressionado
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             // Aqui checamos se o dialogo ja acabou (se essa ultima linha de dialogo, foi a ultima da Data), caso ainda tenha texto para ser exibido aqui iniciará o proximo 
             if (!finished)
@@ -132,7 +136,10 @@ public class DialogueSystem : MonoBehaviour
                 dialogueUI.Disable();
                 state = STATE.DISABLED;
                 currentText = 0;
-                finished = true; // SLA EIN-----------------------------------------------------------
+                finished = true;
+                Interactor.alreadyChating = false;
+                CharacterController.canWalk = true;
+                // SLA EIN-----------------------------------------------------------
                 //interact.SetActive(false);
 
                 // EXEMPLOS DO QUE TERÁ QUE SER FEITO!!!
@@ -153,7 +160,7 @@ public class DialogueSystem : MonoBehaviour
     void Typing()
     {
         //Verificamos se o botão Enter foi pressionado
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             //Ativa a função que pula a animação de digitação e mostra o texto completo de uma só vez
             typetext.Skip();

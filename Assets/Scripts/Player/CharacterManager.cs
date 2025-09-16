@@ -32,14 +32,12 @@ public class CharacterManager : MonoBehaviour
         maxHP = 100;
         actualHP = 100;
 
-        //Debug.Log($"actualHP:{actualHP} / maxHP:{maxHP}"); 
-
         maxMP = 20;
         actualMP = 20;
 
-        Attack = 20;
-        mentalAttack = 20;
+        Attack = 10;
+        mentalAttack = 0;
         Defense = 2;
-        Speed = 25;
+        Speed = 15;
     }
 }
