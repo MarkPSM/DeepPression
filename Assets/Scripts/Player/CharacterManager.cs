@@ -38,6 +38,6 @@ public class CharacterManager : MonoBehaviour
         Attack = 10;
         mentalAttack = 0;
         Defense = 2;
-        Speed = 15;
+        Speed = 25;
     }
 }

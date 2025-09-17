@@ -95,7 +95,8 @@ public class Interactor : MonoBehaviour
         {
             alreadyChating = true;
             characterController.canWalk = false;
-            dataController.WhichData(ChestManagement.chestManagement.actualID);
+            if (dataController != null)
+                dataController.WhichData(ChestManagement.chestManagement.actualID);
             dialogueSystem.Next();
 
             ChestManagement.chestManagement.isOpened = true;

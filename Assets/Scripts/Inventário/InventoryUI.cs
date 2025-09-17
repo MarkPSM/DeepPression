@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
-    public Transform itemListParent;   // onde os botões vão aparecer
+    public Transform itemListParent;
     public GameObject itemButtonPrefab;
 
     [Header("Detail Panel")]
@@ -19,13 +18,13 @@ public class InventoryUI : MonoBehaviour
     [Header("Data")]
     public List<ItemsData> playerItems = new List<ItemsData>();
 
+    private Button[] buttons;
+
     public bool hasBeenRefreshed;
 
     private void Start()
     {
         hasBeenRefreshed = false;
-
-        //Debug.Log(hasBeenRefreshed);
     }
 
     private void Update()
@@ -40,7 +39,6 @@ public class InventoryUI : MonoBehaviour
             foreach (Transform child in itemListParent)
             {
                 Destroy(child.gameObject);
-                //Debug.Log("crianças destruidas");
             }
 
             foreach (var item in playerItems)
@@ -54,7 +52,7 @@ public class InventoryUI : MonoBehaviour
                     GameObject buttonGO = Instantiate(itemButtonPrefab, itemListParent);
                     InventoryButtonUI buttonUI = buttonGO.GetComponent<InventoryButtonUI>();
                     buttonUI.Setup(item, this);
-                    //Debug.Log(item.name);
+                    //buttons = buttonGO.GetComponent<Button>;
                 }
             }
 
@@ -62,7 +60,6 @@ public class InventoryUI : MonoBehaviour
             ClearDetails();
 
             hasBeenRefreshed = true;
-            //Debug.Log(hasBeenRefreshed);
         }
     }
 
