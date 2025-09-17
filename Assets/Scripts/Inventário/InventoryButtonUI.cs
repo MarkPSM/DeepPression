@@ -10,7 +10,7 @@ public class InventoryButtonUI : MonoBehaviour
     public TMP_Text itemName;
     public TMP_Text quantityText;
 
-    private ItemsData itemData;
+    public ItemsData itemData;
     private InventoryUI inventoryUI;
 
     public void Setup(ItemsData data, InventoryUI ui)
@@ -26,6 +26,7 @@ public class InventoryButtonUI : MonoBehaviour
     public void OnSelect(BaseEventData eventData)
     {
         inventoryUI.ShowDetails(itemData);
+        Debug.Log("Mostrou itens");
     }
 
     public void OnPointerEnter(PointerEventData eventData)

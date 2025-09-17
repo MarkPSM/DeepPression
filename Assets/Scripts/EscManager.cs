@@ -71,6 +71,7 @@ public class EscManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(null);
             }
         }
+            
 
         canvasInventory.enabled = inventory;
 
@@ -90,6 +91,8 @@ public class EscManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.I))
             {
+                inventory = !inventory;
+
                 characterController.canWalk = false;
                 inventoryUI.hasBeenRefreshed = false;
                 Debug.Log(inventoryUI.hasBeenRefreshed);
@@ -116,7 +119,6 @@ public class EscManager : MonoBehaviour
 
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(firstItem);
-            Debug.Log("Primeiro botão do inventário selecionado");
         }
     }
 }
