@@ -34,13 +34,10 @@ public class Interactor : MonoBehaviour
 
         if (dataController == null)
             dataController = GameObject.Find("DialogueManager").GetComponent<DataController>();
-        else
-            return;
 
         if (dialogueSystem == null)
             dialogueSystem = GameObject.Find("DialogueManager").GetComponent<DialogueSystem>();
-        else
-            return;
+        
 
         if (alreadyChating && Input.GetKeyDown(KeyCode.X))
         {

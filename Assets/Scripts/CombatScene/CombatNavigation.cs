@@ -18,26 +18,26 @@ public class CombatNavigation : MonoBehaviour
 
     public Button[] botoes;
 
-    private bool HasItem(string itemName)
-    {
-        foreach (var item in inventoryUI.playerItems)
-        {
-            if (item.itemName == itemName && item.quantity > 0)
-                return true;
-        }
-        return false;
-    }
+    //private bool HasItem(string itemName)
+    //{
+    //    foreach (var item in inventoryUI.playerItems)
+    //    {
+    //        if (item.itemName == itemName && item.quantity > 0)
+    //            return true;
+    //    }
+    //    return false;
+    //}
 
 
     private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
+        //EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
     }
-
 
     void Start()
     {
-        UpdateButtonAvaliability();
+        //UpdateButtonAvaliability();
+        SetActiveSetup(initialSetup);
     }
 
     void Update()
@@ -169,106 +169,106 @@ public class CombatNavigation : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
     }
 
-    private void UpdateButtonAvaliability()
-    {
-        foreach (Button btn in botoes)
-        {
-            bool canUse = true;
-            switch (btn.name)
-            {
-                case "btnEnfrentar":
-                    canUse = HasItem("Enfrentar");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //private void UpdateButtonAvaliability()
+    //{
+    //    foreach (Button btn in botoes)
+    //    {
+    //        bool canUse = true;
+    //        switch (btn.name)
+    //        {
+    //            case "btnEnfrentar":
+    //                canUse = HasItem("Enfrentar");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnF&A":
-                    canUse = HasItem("F&A");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //            case "btnF&A":
+    //                canUse = HasItem("F&A");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnCVV":
-                    canUse = HasItem("CVV");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //            case "btnCVV":
+    //                canUse = HasItem("CVV");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnPsique":
-                    canUse = HasItem("Psique");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //            case "btnPsique":
+    //                canUse = HasItem("Psique");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnMúsica":
-                    canUse = HasItem("Música");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //            case "btnMúsica":
+    //                canUse = HasItem("Música");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnExercícios":
-                    canUse = HasItem("Exercícios");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //            case "btnExercícios":
+    //                canUse = HasItem("Exercícios");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnLeitura":
-                    canUse = HasItem("Leitura");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //            case "btnLeitura":
+    //                canUse = HasItem("Leitura");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnConversa":
-                    canUse = HasItem("Conversa");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
+    //            case "btnConversa":
+    //                canUse = HasItem("Conversa");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
 
-                case "btnPocao":
-                    canUse = HasItem("Poção");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
-                case "btnJoia":
-                    canUse = HasItem("Joia");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
-                case "btnRealismo":
-                    canUse = HasItem("Realismo");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
-                case "btnPilula":
-                    canUse = HasItem("Pílula");
-                    if (!canUse)
-                        btn.enabled = false;
-                    else
-                        btn.enabled = true;
-                    break;
-            }
-        }
-    }
+    //            case "btnPocao":
+    //                canUse = HasItem("Poção");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
+    //            case "btnJoia":
+    //                canUse = HasItem("Joia");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
+    //            case "btnRealismo":
+    //                canUse = HasItem("Realismo");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
+    //            case "btnPilula":
+    //                canUse = HasItem("Pílula");
+    //                if (!canUse)
+    //                    btn.enabled = false;
+    //                else
+    //                    btn.enabled = true;
+    //                break;
+    //        }
+    //    }
+    //}
 }

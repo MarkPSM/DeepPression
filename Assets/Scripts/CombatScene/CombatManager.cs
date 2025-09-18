@@ -23,10 +23,17 @@ public class CombatManager : MonoBehaviour
     public float enemyHealth;
     public float bossHealth;
 
+    [Header("XP")]
+    public Slider xpBar;
+    bool canDropXP = true;
+
     [Header("Textos")]
     public TextMeshProUGUI playerHealthText;
     public TextMeshProUGUI playerManaText;
     public TextMeshProUGUI playerSpeedText;
+    public TextMeshProUGUI playerXPText;
+    public TextMeshProUGUI playerLVLText;
+
 
     [Header("Verificações")]
     public bool enemyBarIsRunning = true;
@@ -69,6 +76,21 @@ public class CombatManager : MonoBehaviour
         int playerMaxMana = CharacterManager.Player.maxMP;
 
         playerManaText.text = $"{playerActualMana} / {playerMaxMana}";
+
+        if (playerActualHealth <= 0){
+            levelLoader.LoadPhase("DeathScene");
+        }
+
+        if (xpBar != null)
+        {
+            xpBar.maxValue = CharacterManager.Player.nextLevelXP;
+            xpBar.value = CharacterManager.Player.XP;
+            if (playerXPText != null && playerLVLText != null)
+            {
+                playerXPText.text = $"{xpBar.value}/{xpBar.maxValue}";
+                playerLVLText.text = $"LVL {CharacterManager.Player.Level}";
+            }
+        }
 
         if (playerSpeedBar != null) {
 
@@ -124,9 +146,12 @@ public class CombatManager : MonoBehaviour
                 enemyHealthBar.value = enemyHealth;
                 if (enemyHealthBar.value <= 0)
                 {
-                    //Debug.Log("Inimigo Derrotado");
+                    
                     StartCoroutine(levelLoader.LoadPhase(GameManager.Instance.nextStage.ToString()));
                     EnemyManager.Enemy.isDead = true;
+                    if (canDropXP)
+                        CharacterManager.Player.XP += enemySpawn.enemy.xpDrop;
+                    canDropXP = false;
                 }
                 else
                 {
@@ -150,6 +175,7 @@ public class CombatManager : MonoBehaviour
                     Debug.Log("Boss Derrotado");
                     StartCoroutine(levelLoader.LoadPhase(GameManager.Instance.nextStage.ToString()));
                     EnemyManager.Enemy.isDead = true;
+                    CharacterManager.Player.XP += enemySpawn.enemy.xpDrop;
                 }
                 else
                 {

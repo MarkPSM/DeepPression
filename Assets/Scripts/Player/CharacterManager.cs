@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -16,6 +17,10 @@ public class CharacterManager : MonoBehaviour
     public int Defense;
     public int Speed;
 
+    [Header("Level")]
+    public int Level;
+    public int XP;
+    public int nextLevelXP;
         
     private void Awake()
     { 
@@ -39,5 +44,29 @@ public class CharacterManager : MonoBehaviour
         mentalAttack = 0;
         Defense = 2;
         Speed = 25;
+
+        Level = 0;
+        nextLevelXP = 100;
+    }
+
+    public void FixedUpdate()
+    {
+        if (XP >= nextLevelXP)
+        {
+            var restante = XP - nextLevelXP;
+
+            nextLevelXP *= 2;
+            XP = restante;
+
+            maxHP += 25;
+            actualHP += 25;
+            maxMP += 5;
+            actualMP += 5;
+
+            Attack *= 2;
+            mentalAttack += Attack / 2 + 5;
+            Defense += 1;
+            Speed *= 1;
+        }
     }
 }

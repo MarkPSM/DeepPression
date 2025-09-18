@@ -13,4 +13,7 @@ public class EnemyData : ScriptableObject
     public int attack;
     public int defense;
     public int speed;
+
+    [Header("Level")]
+    public int xpDrop;
 }

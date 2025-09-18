@@ -19,3 +19,4 @@ MonoBehaviour:
   attack: 3
   defense: 6
   speed: 15
+  xpDrop: 100
