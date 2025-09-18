@@ -1488,7 +1488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &213538928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5681,6 +5681,7 @@ MonoBehaviour:
   enfrentarSetup: {fileID: 493031891}
   hobbySetup: {fileID: 1358018147}
   itensSetup: {fileID: 351371656}
+  botoes: []
 --- !u!4 &1090958574
 Transform:
   m_ObjectHideFlags: 0
@@ -5749,8 +5750,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6716ae62a0c84394b8fbdb8678632077, type: 2}
   - {fileID: 11400000, guid: ea765c4642c0b354d87e1005ad267f1c, type: 2}
   fstStageBoss: {fileID: 11400000, guid: fc73d41961058164ca63aa3cef547077, type: 2}
-  sndStageEnemies: []
-  sndStageBoss: {fileID: 0}
+  sndStageEnemies:
+  - {fileID: 11400000, guid: 2bbc35f95bf99e741a649fa3641e82e8, type: 2}
+  - {fileID: 11400000, guid: 98024d0de90ddb846941cf61fac4a99e, type: 2}
+  - {fileID: 11400000, guid: a5a53ee8088ed7c44aa1343a2400b9f1, type: 2}
+  sndStageBoss: {fileID: 11400000, guid: d53e8ed3195d453418449589e3458cf6, type: 2}
   trdStageEnemies: []
   trdStageBoss: {fileID: 0}
   portrait: {fileID: 1852711955}

@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     [Header("AI")]
     public GameObject player;
     public float areaRange = 3f;
+    public float minAreaRange = 2.25f;
     public float speed = 10f;
     private Rigidbody2D rb;
     private Transform target;
@@ -58,14 +59,14 @@ public class EnemyController : MonoBehaviour
         {
             float distance = Vector2.Distance(target.position, transform.position);
 
-            if (distance <= areaRange && distance >= 2.25f)
+            if (distance <= areaRange && distance >= minAreaRange)
             {
                 Vector2 direction = (target.position - transform.position).normalized;
                 rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
 
                 animator.SetBool("isWalking", true);
             }
-            else if (distance <= 2.25f)
+            else if (distance <= minAreaRange)
             {
                 rb.MovePosition(rb.position);
                 animator.SetBool("isWalking", false);
