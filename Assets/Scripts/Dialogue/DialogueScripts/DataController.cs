@@ -30,13 +30,14 @@ public class DataController : MonoBehaviour
                 dialogueSystem.Which(data[3]);
                 dialogueSystem.Reiniciate();
                 break;
-                //case 4:
-                //    dialogueSystem.Which(data4);
-                //    //dialogueSystem.Reiniciate();
-                //    break;
-                //case 5:
-                //    dialogueSystem.Which(data5);
-                //    break;
+            case 4:
+                dialogueSystem.Which(data[4]);
+                dialogueSystem.Reiniciate();
+                break;
+            //case 5:
+            //    dialogueSystem.Which(data[5]);
+            //    dialogueSystem.Reiniciate();
+            //    break;
                 //case 6:
                 //    dialogueSystem.Which(data6);
                 //    break;

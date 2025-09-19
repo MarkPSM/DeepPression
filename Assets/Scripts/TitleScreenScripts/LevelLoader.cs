@@ -29,6 +29,24 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadPhase("FirstStage"));
     }
 
+    public void GoToCheckpoint()
+    {
+        GameObject Player = GameObject.FindWithTag("Player");
+        Player.transform.position = GameManager.Instance.Checkpoint.position;
+        Debug.Log("Player foi para o checkpoint");
+        CharacterController characterController = Player.GetComponent<CharacterController>();
+        characterController.canWalk = true;
+
+        StartCoroutine(LoadPhase(GameManager.Instance.nextStage.ToString()));
+    }
+
+    public void BackToTitle()
+    {
+
+        StartCoroutine(LoadPhase("TitleScreen"));
+        GameManager.Instance.DestroyEnemies();
+    }
+
     public IEnumerator LoadPhase(string phaseName)
     {
         transition.SetTrigger("Start");

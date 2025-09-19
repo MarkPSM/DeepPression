@@ -8,6 +8,7 @@ public class CombatManager : MonoBehaviour
     public EnemySpawn enemySpawn;
     public LevelLoader levelLoader;
     public EnemyController enemyController;
+    public CharacterController characterController;
 
     [Header("Speed")]
     [SerializeField] private float speedFillRate;
@@ -38,7 +39,7 @@ public class CombatManager : MonoBehaviour
     [Header("Verificações")]
     public bool enemyBarIsRunning = true;
     
-
+    
 
     void Start()
     {   
@@ -62,6 +63,8 @@ public class CombatManager : MonoBehaviour
         }
 
         levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
+
     }
 
     void Update()
@@ -78,7 +81,8 @@ public class CombatManager : MonoBehaviour
         playerManaText.text = $"{playerActualMana} / {playerMaxMana}";
 
         if (playerActualHealth <= 0){
-            levelLoader.LoadPhase("DeathScene");
+            StartCoroutine(levelLoader.LoadPhase("DeathScreen"));
+            characterController.player.transform.position = GameManager.Instance.Checkpoint.position;
         }
 
         if (xpBar != null)
@@ -172,10 +176,12 @@ public class CombatManager : MonoBehaviour
 
                 if (bossHealthBar.value <= 0)
                 {
-                    Debug.Log("Boss Derrotado");
+                    Debug.Log("Boss derrotado!");
                     StartCoroutine(levelLoader.LoadPhase(GameManager.Instance.nextStage.ToString()));
                     EnemyManager.Enemy.isDead = true;
-                    CharacterManager.Player.XP += enemySpawn.enemy.xpDrop;
+                    if (canDropXP)
+                        CharacterManager.Player.XP += enemySpawn.boss.xpDrop;
+                    canDropXP = false;
                 }
                 else
                 {
