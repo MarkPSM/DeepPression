@@ -82,7 +82,12 @@ public class CombatManager : MonoBehaviour
 
         if (playerActualHealth <= 0){
             StartCoroutine(levelLoader.LoadPhase("DeathScreen"));
-            characterController.player.transform.position = GameManager.Instance.Checkpoint.position;
+            EnemyManager.Enemy.playerDied = true;
+            Debug.Log(EnemyManager.Enemy.playerDied);
+        }
+        else
+        {
+            EnemyManager.Enemy.playerDied = false;
         }
 
         if (xpBar != null)

@@ -23,7 +23,11 @@ public class Interactor : MonoBehaviour
 
     void Start()
     {
+        if (dataController == null)
+            dataController = GameObject.Find("DialogueManager").GetComponent<DataController>();
 
+        if (dialogueSystem == null)
+            dialogueSystem = GameObject.Find("DialogueManager").GetComponent<DialogueSystem>();
     }
 
     void Update()
@@ -33,11 +37,6 @@ public class Interactor : MonoBehaviour
             action.Invoke();
         }
 
-        if (dataController == null)
-            dataController = GameObject.Find("DialogueManager").GetComponent<DataController>();
-
-        if (dialogueSystem == null)
-            dialogueSystem = GameObject.Find("DialogueManager").GetComponent<DialogueSystem>();
 
 
         if (alreadyChating && Input.GetKeyDown(KeyCode.X))

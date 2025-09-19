@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [Header("Reference")]
     public LevelLoader levelLoader;
     public CharacterController characterController;
+    //public EnemyManager enemyManager;
 
     [Header("Animator")]
     private Animator animator;
@@ -54,7 +55,17 @@ public class EnemyController : MonoBehaviour
                 Flip();
             else if (target.position.x > transform.position.x && !isFacingRight)
                 Flip();
+
+            if(EnemyManager.Enemy.playerDied == true)
+            {
+                StartCoroutine(ReturnCollider());
+            }
+            else
+            {
+                return;
+            }
         }
+        
     }
 
     private void FixedUpdate()
@@ -127,5 +138,15 @@ public class EnemyController : MonoBehaviour
         Destroy(this.gameObject);
 
         EnemyManager.Enemy.isDead = false;
+    }
+
+    private IEnumerator ReturnCollider()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canCollide = true;
+        Debug.Log(canCollide);
+        yield return new WaitForSeconds(2f);
+        EnemyManager.Enemy.playerDied = false;
+        Debug.Log(canCollide);
     }
 }

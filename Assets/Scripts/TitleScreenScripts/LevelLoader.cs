@@ -37,6 +37,9 @@ public class LevelLoader : MonoBehaviour
         CharacterController characterController = Player.GetComponent<CharacterController>();
         characterController.canWalk = true;
 
+        CharacterManager.Player.actualHP = CharacterManager.Player.maxHP;
+        CharacterManager.Player.actualMP = CharacterManager.Player.maxMP;
+
         StartCoroutine(LoadPhase(GameManager.Instance.nextStage.ToString()));
     }
 

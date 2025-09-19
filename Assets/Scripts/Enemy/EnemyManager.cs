@@ -17,6 +17,13 @@ public class EnemyManager : MonoBehaviour
 
     public int actualID;
 
+    public bool playerDied;
+
+    private void Awake()
+    {
+        playerDied = false;
+    }
+
     void Start()
     {
         if (Enemy == null)
@@ -47,7 +54,10 @@ public class EnemyManager : MonoBehaviour
         //        DontDestroyOnLoad(enemy);
         //    }
         //}
+    }
 
+    private void Update()
+    {
         if (enemies != null)
         {
             GameObject inimigoAtual = enemies[actualID];
@@ -60,7 +70,7 @@ public class EnemyManager : MonoBehaviour
             {
                 Debug.Log("Inimigo " + actualID + " morto");
             }
-        } 
+        }
         else
         {
             Debug.Log("enemies null");
