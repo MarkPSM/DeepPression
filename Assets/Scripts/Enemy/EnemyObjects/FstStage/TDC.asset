@@ -16,7 +16,7 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 4418e913f2f49a149be35919f004a7e3, type: 3}
   maxHP: 40
   currentHP: 40
-  attack: 6
+  attack: 47
   defense: 4
   speed: 25
   xpDrop: 100

@@ -10,6 +10,8 @@ public class Navigation : MonoBehaviour
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(botoes[0].gameObject);
+
+        Cursor.visible = false;
     }
 
     void Update()

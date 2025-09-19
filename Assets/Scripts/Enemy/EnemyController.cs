@@ -27,8 +27,12 @@ public class EnemyController : MonoBehaviour
     [Header("Stage")]
     public EnemySpawn.Stage thisStage;
 
-    private void Awake()
+    private void Start()
     {
+        player = GameObject.Find("Player");
+
+        characterController = player.GetComponent<CharacterController>();
+
         canCollide = true;
         target = player.transform;
         animator = GetComponent<Animator>();

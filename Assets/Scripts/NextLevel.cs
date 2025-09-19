@@ -6,6 +6,12 @@ public class NextLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        LevelLoader.LoadPhase("SecondStage");
+
+        if (collision.CompareTag("Player"))
+        {
+            GameManager.Instance.DestroyEnemies();
+            StartCoroutine(LevelLoader.LoadPhase("SecondStage"));
+        }
+
     }
 }

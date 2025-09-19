@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public bool nextIsBoss;
     public EnemyData nextEnemy;
 
+    [Header("Save")]
+    public Transform Checkpoint;
+
+    public GameObject enemiesList;
+
 
     void Awake()
     {
@@ -21,10 +26,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //enemiesList = GameObject.Find("Enemies").GetComponent<GameObject>();
+
+        Cursor.visible = false;
     }
 
     public void PrepareCombat(EnemySpawn.Stage stage)
     {
         nextStage = stage;
+    }
+
+    public void DestroyEnemies()
+    {
+        if(enemiesList != null)
+        {
+            Destroy(enemiesList);
+            Debug.Log("Lista de inimigos destruída");
+        }
     }
 }

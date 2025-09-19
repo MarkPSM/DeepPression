@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Interactor : MonoBehaviour
@@ -37,7 +38,7 @@ public class Interactor : MonoBehaviour
 
         if (dialogueSystem == null)
             dialogueSystem = GameObject.Find("DialogueManager").GetComponent<DialogueSystem>();
-        
+
 
         if (alreadyChating && Input.GetKeyDown(KeyCode.X))
         {
@@ -53,7 +54,7 @@ public class Interactor : MonoBehaviour
 
             if (other.CompareTag("Chest"))
             {
-                Debug.Log("Collidindo cm um bau");
+                Debug.Log("Collidindo cm Chest");
                 chestData = interactedObject.GetComponent<ChestData>();
 
                 if (chestData != null)
@@ -62,6 +63,33 @@ public class Interactor : MonoBehaviour
                     ChestManagement.chestManagement.actualID = chestData.chestID;
                     action = AbrirBau;
                 }
+            }
+            else if (other.CompareTag("Save"))
+            {
+                Debug.Log("Colidindo cm o Save: " + other.name);
+                switch (other.name)
+                {
+                    case "FirstSave":
+                        action = FirstSave;
+                        break;
+
+                    case "SecondSave":
+                        action = SecondSave;
+                        break;
+
+                    case "ThirdSave":
+                        action = ThirdSave;
+                        break;
+
+                    case "FourthSave":
+                        action = FourthSave;
+                        break;
+
+                    case "FifthSave":
+                        action = FifthSave;
+                        break;
+                }
+
             }
             else
             {
@@ -97,6 +125,104 @@ public class Interactor : MonoBehaviour
             dialogueSystem.Next();
 
             ChestManagement.chestManagement.isOpened = true;
+            return;
+        }
+    }
+
+    void FirstSave()
+    {
+        if (!alreadyChating)
+        {
+            alreadyChating = true;
+            characterController.canWalk = false;
+            CharacterManager.Player.actualHP = CharacterManager.Player.maxHP;
+            CharacterManager.Player.actualMP = CharacterManager.Player.maxMP;
+
+            if (dataController != null)
+                dataController.WhichData(0);
+            dialogueSystem.Next();
+
+            GameManager.Instance.Checkpoint = interactedObject.transform.Find("Checkpoint").GetComponent<Transform>();
+
+            return;
+        }
+    }
+
+    void SecondSave()
+    {
+        if (!alreadyChating)
+        {
+            alreadyChating = true;
+            characterController.canWalk = false;
+            CharacterManager.Player.actualHP = CharacterManager.Player.maxHP;
+            CharacterManager.Player.actualMP = CharacterManager.Player.maxMP;
+
+            if (dataController != null)
+                dataController.WhichData(1);
+            dialogueSystem.Next();
+
+            GameManager.Instance.Checkpoint = interactedObject.transform.Find("Checkpoint").GetComponent<Transform>();
+
+            return;
+        }
+    }
+
+    void ThirdSave()
+    {
+        if (!alreadyChating)
+        {
+            alreadyChating = true;
+            characterController.canWalk = false;
+            CharacterManager.Player.actualHP = CharacterManager.Player.maxHP;
+            CharacterManager.Player.actualMP = CharacterManager.Player.maxMP;
+
+            if (dataController != null)
+                dataController.WhichData(2);
+
+            dialogueSystem.Next();
+
+            GameManager.Instance.Checkpoint = interactedObject.transform.Find("Checkpoint").GetComponent<Transform>();
+
+            return;
+        }
+    }
+
+    void FourthSave()
+    {
+        if (!alreadyChating)
+        {
+            alreadyChating = true;
+            characterController.canWalk = false;
+            CharacterManager.Player.actualHP = CharacterManager.Player.maxHP;
+            CharacterManager.Player.actualMP = CharacterManager.Player.maxMP;
+
+            if (dataController != null)
+                dataController.WhichData(3);
+
+            dialogueSystem.Next();
+
+            GameManager.Instance.Checkpoint = interactedObject.transform.Find("Checkpoint").GetComponent<Transform>();
+
+            return;
+        }
+    }
+
+    void FifthSave()
+    {
+        if (!alreadyChating)
+        {
+            alreadyChating = true;
+            characterController.canWalk = false;
+            CharacterManager.Player.actualHP = CharacterManager.Player.maxHP;
+            CharacterManager.Player.actualMP = CharacterManager.Player.maxMP;
+
+            if (dataController != null)
+                dataController.WhichData(4);
+
+            dialogueSystem.Next();
+
+            GameManager.Instance.Checkpoint = interactedObject.transform.Find("Checkpoint").GetComponent<Transform>();
+
             return;
         }
     }

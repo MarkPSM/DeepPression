@@ -17,7 +17,7 @@ public class EnemyManager : MonoBehaviour
 
     public int actualID;
 
-    void Awake()
+    void Start()
     {
         if (Enemy == null)
         {
